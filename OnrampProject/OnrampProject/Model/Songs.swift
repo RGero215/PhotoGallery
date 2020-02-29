@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Song: Decodable {
+struct Song: Codable {
     let name: String
     let link: String
     let genre: String?
