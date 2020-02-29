@@ -39,6 +39,7 @@ class PhotoHorizontalController: BaseCollectionViewController {
         self.artworks = self.artworks.filter{ chapter.artwork.contains($0.id)}
         let artwork = artworks[indexPath.item]
         let image = URL(string: artwork.image)
+        cell?.imageView.sd_setImage(with:image)
         return cell!
     }
 }

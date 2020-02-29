@@ -18,7 +18,6 @@ class PhotoRowCell: UICollectionViewCell {
         super.init(frame: frame)
         addSubview(imageView)
         imageView.fillSuperview()
-        imageView.backgroundColor = .blue
         
     }
     

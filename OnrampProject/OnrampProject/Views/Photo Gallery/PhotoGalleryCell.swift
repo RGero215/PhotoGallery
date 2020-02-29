@@ -22,8 +22,6 @@ class PhotoGalleryCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        backgroundColor = .blue
-        
         addSubview(titleLabel)
         titleLabel.anchor(top: topAnchor, leading: leadingAnchor, bottom: nil, trailing: trailingAnchor)
         
