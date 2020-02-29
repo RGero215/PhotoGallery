@@ -99,8 +99,7 @@
 		6030FC6E23FF0C79007F0901 /* OnrampProject */ = {
 			isa = PBXGroup;
 			children = (
-				6030FC6F23FF0C79007F0901 /* AppDelegate.swift */,
-				6030FC7123FF0C79007F0901 /* SceneDelegate.swift */,
+				87407CAE240A6916000ADF81 /* Application+Scene Delegate */,
 				6030FC7323FF0C79007F0901 /* ViewController.swift */,
 				6030FC7523FF0C79007F0901 /* Main.storyboard */,
 				6030FC7823FF0C7A007F0901 /* Assets.xcassets */,
@@ -126,6 +125,15 @@
 				6030FC9323FF0C7A007F0901 /* Info.plist */,
 			);
 			path = OnrampProjectUITests;
+			sourceTree = "<group>";
+		};
+		87407CAE240A6916000ADF81 /* Application+Scene Delegate */ = {
+			isa = PBXGroup;
+			children = (
+				6030FC6F23FF0C79007F0901 /* AppDelegate.swift */,
+				6030FC7123FF0C79007F0901 /* SceneDelegate.swift */,
+			);
+			path = "Application+Scene Delegate";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -434,12 +442,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 29KKRTJA28;
 				INFOPLIST_FILE = OnrampProject/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.onramp.OnrampProject;
+				PRODUCT_BUNDLE_IDENTIFIER = com.geronimo.ramon.OnrampProject;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -451,12 +460,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 29KKRTJA28;
 				INFOPLIST_FILE = OnrampProject/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.onramp.OnrampProject;
+				PRODUCT_BUNDLE_IDENTIFIER = com.geronimo.ramon.OnrampProject;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
