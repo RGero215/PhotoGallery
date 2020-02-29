@@ -218,9 +218,17 @@
 		87568339240AF17A00F36E9E /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				8756833A240AF1A800F36E9E /* PhotoGalleryCell.swift */,
+				8756833E240AF6D900F36E9E /* Photo Gallery */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		8756833E240AF6D900F36E9E /* Photo Gallery */ = {
+			isa = PBXGroup;
+			children = (
+				8756833A240AF1A800F36E9E /* PhotoGalleryCell.swift */,
+			);
+			path = "Photo Gallery";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

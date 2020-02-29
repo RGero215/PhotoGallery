@@ -9,6 +9,8 @@ import UIKit
 
 class PhotoGalleryCell: UICollectionViewCell {
     
+    //MARK:- COMPONENTS PROPERTIES
+    
     let titleLabel: UILabel = {
         let label = UILabel()
         label.text = "Title"
@@ -16,10 +18,16 @@ class PhotoGalleryCell: UICollectionViewCell {
         return label
     }()
     
+    //MARK:- INITIALIZER
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
         backgroundColor = .blue
+        
+        addSubview(titleLabel)
+        titleLabel.anchor(top: topAnchor, leading: leadingAnchor, bottom: nil, trailing: trailingAnchor)
+        
     }
     
     required init?(coder: NSCoder) {
