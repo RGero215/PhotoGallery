@@ -13,6 +13,10 @@ class PhotoGalleryCell: UICollectionViewCell {
     
     let titleLabel = UILabel(text: "Photo Title", font: .boldSystemFont(ofSize: 30))
     
+    //MARK: - HORIZONTAL CONTROLLER
+    
+    let horizontalController = UIViewController()
+    
     //MARK:- INITIALIZER
     
     override init(frame: CGRect) {
@@ -22,6 +26,10 @@ class PhotoGalleryCell: UICollectionViewCell {
         
         addSubview(titleLabel)
         titleLabel.anchor(top: topAnchor, leading: leadingAnchor, bottom: nil, trailing: trailingAnchor)
+        
+        addSubview(horizontalController.view)
+        horizontalController.view.backgroundColor = .red
+        horizontalController.view.anchor(top: titleLabel.bottomAnchor, leading: leadingAnchor, bottom: bottomAnchor, trailing: trailingAnchor)
         
     }
     
