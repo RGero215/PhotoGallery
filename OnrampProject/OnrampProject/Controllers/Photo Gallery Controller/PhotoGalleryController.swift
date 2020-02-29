@@ -16,7 +16,7 @@ class PhotoGalleryController: BaseCollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: cellId)
+        collectionView.register(PhotoGalleryCell.self, forCellWithReuseIdentifier: cellId)
     }
 }
 
@@ -26,9 +26,9 @@ extension PhotoGalleryController: UICollectionViewDelegateFlowLayout {
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as UICollectionViewCell
-        cell.backgroundColor = .red
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as? PhotoGalleryCell
         
-        return cell
+        
+        return cell!
     }
 }
