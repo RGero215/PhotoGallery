@@ -27,6 +27,7 @@
 		87568349240B15D400F36E9E /* Artworks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87568348240B15D400F36E9E /* Artworks.swift */; };
 		8756834B240B16A200F36E9E /* Animations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8756834A240B16A200F36E9E /* Animations.swift */; };
 		8756834D240B16E900F36E9E /* Songs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8756834C240B16E900F36E9E /* Songs.swift */; };
+		87568350240B17B300F36E9E /* CaptureNarcos.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8756834F240B17B300F36E9E /* CaptureNarcos.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,6 +74,7 @@
 		87568348240B15D400F36E9E /* Artworks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Artworks.swift; sourceTree = "<group>"; };
 		8756834A240B16A200F36E9E /* Animations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Animations.swift; sourceTree = "<group>"; };
 		8756834C240B16E900F36E9E /* Songs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Songs.swift; sourceTree = "<group>"; };
+		8756834F240B17B300F36E9E /* CaptureNarcos.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptureNarcos.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,6 +125,7 @@
 		6030FC6E23FF0C79007F0901 /* OnrampProject */ = {
 			isa = PBXGroup;
 			children = (
+				8756834E240B179E00F36E9E /* Service */,
 				87568345240B151D00F36E9E /* Model */,
 				87568339240AF17A00F36E9E /* Views */,
 				87407CB4240A7D92000ADF81 /* Helpers */,
@@ -258,6 +261,14 @@
 				8756834C240B16E900F36E9E /* Songs.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		8756834E240B179E00F36E9E /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				8756834F240B17B300F36E9E /* CaptureNarcos.swift */,
+			);
+			path = Service;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -398,6 +409,7 @@
 				8756833D240AF2AF00F36E9E /* LightAndDarkMode.swift in Sources */,
 				6030FC7023FF0C79007F0901 /* AppDelegate.swift in Sources */,
 				8756834B240B16A200F36E9E /* Animations.swift in Sources */,
+				87568350240B17B300F36E9E /* CaptureNarcos.swift in Sources */,
 				87568342240AFC5900F36E9E /* PhotoHorizontalController.swift in Sources */,
 				87568349240B15D400F36E9E /* Artworks.swift in Sources */,
 				87568347240B155A00F36E9E /* Chapters.swift in Sources */,
