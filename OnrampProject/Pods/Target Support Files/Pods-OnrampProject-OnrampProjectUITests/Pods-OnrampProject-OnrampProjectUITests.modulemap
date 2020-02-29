@@ -1,0 +1,6 @@
+framework module Pods_OnrampProject_OnrampProjectUITests {
+  umbrella header "Pods-OnrampProject-OnrampProjectUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}
