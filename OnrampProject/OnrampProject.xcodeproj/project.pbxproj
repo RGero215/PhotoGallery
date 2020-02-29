@@ -23,6 +23,10 @@
 		87568340240AF8F900F36E9E /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8756833F240AF8F900F36E9E /* Extensions.swift */; };
 		87568342240AFC5900F36E9E /* PhotoHorizontalController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87568341240AFC5900F36E9E /* PhotoHorizontalController.swift */; };
 		87568344240B09CB00F36E9E /* PhotoRowCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87568343240B09CB00F36E9E /* PhotoRowCell.swift */; };
+		87568347240B155A00F36E9E /* Chapters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87568346240B155A00F36E9E /* Chapters.swift */; };
+		87568349240B15D400F36E9E /* Artworks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87568348240B15D400F36E9E /* Artworks.swift */; };
+		8756834B240B16A200F36E9E /* Animations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8756834A240B16A200F36E9E /* Animations.swift */; };
+		8756834D240B16E900F36E9E /* Songs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8756834C240B16E900F36E9E /* Songs.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +69,10 @@
 		8756833F240AF8F900F36E9E /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		87568341240AFC5900F36E9E /* PhotoHorizontalController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoHorizontalController.swift; sourceTree = "<group>"; };
 		87568343240B09CB00F36E9E /* PhotoRowCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoRowCell.swift; sourceTree = "<group>"; };
+		87568346240B155A00F36E9E /* Chapters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chapters.swift; sourceTree = "<group>"; };
+		87568348240B15D400F36E9E /* Artworks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Artworks.swift; sourceTree = "<group>"; };
+		8756834A240B16A200F36E9E /* Animations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Animations.swift; sourceTree = "<group>"; };
+		8756834C240B16E900F36E9E /* Songs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Songs.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,6 +123,7 @@
 		6030FC6E23FF0C79007F0901 /* OnrampProject */ = {
 			isa = PBXGroup;
 			children = (
+				87568345240B151D00F36E9E /* Model */,
 				87568339240AF17A00F36E9E /* Views */,
 				87407CB4240A7D92000ADF81 /* Helpers */,
 				87407CB3240A6CE4000ADF81 /* Supporting Files */,
@@ -238,6 +247,17 @@
 				87568343240B09CB00F36E9E /* PhotoRowCell.swift */,
 			);
 			path = "Photo Gallery";
+			sourceTree = "<group>";
+		};
+		87568345240B151D00F36E9E /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				87568346240B155A00F36E9E /* Chapters.swift */,
+				87568348240B15D400F36E9E /* Artworks.swift */,
+				8756834A240B16A200F36E9E /* Animations.swift */,
+				8756834C240B16E900F36E9E /* Songs.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -370,13 +390,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8756834D240B16E900F36E9E /* Songs.swift in Sources */,
 				8756833B240AF1A800F36E9E /* PhotoGalleryCell.swift in Sources */,
 				87568340240AF8F900F36E9E /* Extensions.swift in Sources */,
 				87407CB6240A7E10000ADF81 /* UIView+Layout.swift in Sources */,
 				6030FC7423FF0C79007F0901 /* RootViewController.swift in Sources */,
 				8756833D240AF2AF00F36E9E /* LightAndDarkMode.swift in Sources */,
 				6030FC7023FF0C79007F0901 /* AppDelegate.swift in Sources */,
+				8756834B240B16A200F36E9E /* Animations.swift in Sources */,
 				87568342240AFC5900F36E9E /* PhotoHorizontalController.swift in Sources */,
+				87568349240B15D400F36E9E /* Artworks.swift in Sources */,
+				87568347240B155A00F36E9E /* Chapters.swift in Sources */,
 				87407CBC240A7FDE000ADF81 /* BaseCollectionViewController.swift in Sources */,
 				87407CB9240A7EF5000ADF81 /* PhotoGalleryController.swift in Sources */,
 				87568344240B09CB00F36E9E /* PhotoRowCell.swift in Sources */,
