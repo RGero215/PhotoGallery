@@ -99,11 +99,10 @@
 		6030FC6E23FF0C79007F0901 /* OnrampProject */ = {
 			isa = PBXGroup;
 			children = (
+				87407CB1240A6C10000ADF81 /* Storyboards */,
 				87407CAE240A6916000ADF81 /* Application+Scene Delegate */,
 				87407CAF240A6A40000ADF81 /* Controllers */,
-				6030FC7523FF0C79007F0901 /* Main.storyboard */,
 				6030FC7823FF0C7A007F0901 /* Assets.xcassets */,
-				6030FC7A23FF0C7A007F0901 /* LaunchScreen.storyboard */,
 				6030FC7D23FF0C7A007F0901 /* Info.plist */,
 			);
 			path = OnrampProject;
@@ -150,6 +149,15 @@
 				6030FC7323FF0C79007F0901 /* RootViewController.swift */,
 			);
 			path = "Root View Controller";
+			sourceTree = "<group>";
+		};
+		87407CB1240A6C10000ADF81 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				6030FC7523FF0C79007F0901 /* Main.storyboard */,
+				6030FC7A23FF0C7A007F0901 /* LaunchScreen.storyboard */,
+			);
+			path = Storyboards;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
