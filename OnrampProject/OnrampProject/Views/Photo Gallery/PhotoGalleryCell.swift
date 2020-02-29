@@ -11,12 +11,7 @@ class PhotoGalleryCell: UICollectionViewCell {
     
     //MARK:- COMPONENTS PROPERTIES
     
-    let titleLabel: UILabel = {
-        let label = UILabel()
-        label.text = "Title"
-        label.font = .boldSystemFont(ofSize: 30)
-        return label
-    }()
+    let titleLabel = UILabel(text: "Photo Title", font: .boldSystemFont(ofSize: 30))
     
     //MARK:- INITIALIZER
     
