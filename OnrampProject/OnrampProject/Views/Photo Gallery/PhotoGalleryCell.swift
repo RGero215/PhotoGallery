@@ -15,7 +15,7 @@ class PhotoGalleryCell: UICollectionViewCell {
     
     //MARK: - HORIZONTAL CONTROLLER
     
-    let horizontalController = UIViewController()
+    let horizontalController = PhotoHorizontalController()
     
     //MARK:- INITIALIZER
     
@@ -28,7 +28,7 @@ class PhotoGalleryCell: UICollectionViewCell {
         titleLabel.anchor(top: topAnchor, leading: leadingAnchor, bottom: nil, trailing: trailingAnchor)
         
         addSubview(horizontalController.view)
-        horizontalController.view.backgroundColor = .red
+        
         horizontalController.view.anchor(top: titleLabel.bottomAnchor, leading: leadingAnchor, bottom: bottomAnchor, trailing: trailingAnchor)
         
     }
