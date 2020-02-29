@@ -14,6 +14,8 @@ class PhotoHorizontalController: BaseCollectionViewController {
     var artworks = [Artwork]()
     var chapter: Chapters!
     
+    //MARK:- CLOUSURE
+    var didSelectHandler: ((Artwork) -> ())?
     
     // MARK:- LIFE CYCLE
     
@@ -28,6 +30,8 @@ class PhotoHorizontalController: BaseCollectionViewController {
     
     }
     
+    
+    
     // MARK:- COLLECTION VIEW PROTOCOLS
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         self.artworks = self.artworks.filter { chapter.artwork.contains($0.id)}
@@ -41,6 +45,12 @@ class PhotoHorizontalController: BaseCollectionViewController {
         let image = URL(string: artwork.image)
         cell?.imageView.sd_setImage(with:image)
         return cell!
+    }
+    
+    //MARK:- DID SELECT ARTWORK
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let artwork = artworks[indexPath.item]
+        didSelectHandler?(artwork)
     }
 }
 

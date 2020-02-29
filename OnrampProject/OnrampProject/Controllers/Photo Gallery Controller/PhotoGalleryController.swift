@@ -82,6 +82,8 @@ class PhotoGalleryController: BaseCollectionViewController {
             self.artworks = artworks
         }
     }
+    
+    
 }
 
 extension PhotoGalleryController: UICollectionViewDelegateFlowLayout {
@@ -96,6 +98,20 @@ extension PhotoGalleryController: UICollectionViewDelegateFlowLayout {
         cell?.horizontalController.artworks = self.artworks
         cell?.horizontalController.chapter = chapter
         cell?.horizontalController.collectionView.reloadData()
+        
+        cell?.horizontalController.didSelectHandler = { [weak self] artwork in
+            
+            // Add Fade animation
+            let artworkDetailController = UIViewController()
+            CATransaction.begin()
+            CATransaction.setDisableActions(true)
+            let animation = CATransition()
+            animation.type = CATransitionType.fade
+            self?.navigationController?.view.layer.add(animation, forKey: "didSelect")
+            
+            _ = self?.navigationController?.pushViewController(artworkDetailController, animated: false)
+            CATransaction.commit()
+        }
         
         return cell!
     }
