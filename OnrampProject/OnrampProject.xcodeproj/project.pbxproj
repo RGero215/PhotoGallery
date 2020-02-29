@@ -22,6 +22,7 @@
 		8756833D240AF2AF00F36E9E /* LightAndDarkMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8756833C240AF2AF00F36E9E /* LightAndDarkMode.swift */; };
 		87568340240AF8F900F36E9E /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8756833F240AF8F900F36E9E /* Extensions.swift */; };
 		87568342240AFC5900F36E9E /* PhotoHorizontalController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87568341240AFC5900F36E9E /* PhotoHorizontalController.swift */; };
+		87568344240B09CB00F36E9E /* PhotoRowCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87568343240B09CB00F36E9E /* PhotoRowCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +64,7 @@
 		8756833C240AF2AF00F36E9E /* LightAndDarkMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightAndDarkMode.swift; sourceTree = "<group>"; };
 		8756833F240AF8F900F36E9E /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		87568341240AFC5900F36E9E /* PhotoHorizontalController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoHorizontalController.swift; sourceTree = "<group>"; };
+		87568343240B09CB00F36E9E /* PhotoRowCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoRowCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -233,6 +235,7 @@
 			isa = PBXGroup;
 			children = (
 				8756833A240AF1A800F36E9E /* PhotoGalleryCell.swift */,
+				87568343240B09CB00F36E9E /* PhotoRowCell.swift */,
 			);
 			path = "Photo Gallery";
 			sourceTree = "<group>";
@@ -376,6 +379,7 @@
 				87568342240AFC5900F36E9E /* PhotoHorizontalController.swift in Sources */,
 				87407CBC240A7FDE000ADF81 /* BaseCollectionViewController.swift in Sources */,
 				87407CB9240A7EF5000ADF81 /* PhotoGalleryController.swift in Sources */,
+				87568344240B09CB00F36E9E /* PhotoRowCell.swift in Sources */,
 				6030FC7223FF0C79007F0901 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
