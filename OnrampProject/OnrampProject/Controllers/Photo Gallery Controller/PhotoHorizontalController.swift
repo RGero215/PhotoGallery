@@ -19,6 +19,10 @@ class PhotoHorizontalController: BaseCollectionViewController {
         super.viewDidLoad()
         
         collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: cellId)
+        
+        if let layout = collectionViewLayout as? UICollectionViewFlowLayout {
+            layout.scrollDirection = .horizontal
+        }
     
     }
     
@@ -33,5 +37,11 @@ class PhotoHorizontalController: BaseCollectionViewController {
         cell.backgroundColor = .red
         
         return cell
+    }
+}
+
+extension PhotoHorizontalController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return .init(width: view.frame.width, height: view.frame.height - 32)
     }
 }
