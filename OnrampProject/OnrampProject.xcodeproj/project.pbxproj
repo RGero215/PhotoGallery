@@ -99,10 +99,10 @@
 		6030FC6E23FF0C79007F0901 /* OnrampProject */ = {
 			isa = PBXGroup;
 			children = (
+				87407CB2240A6C89000ADF81 /* Resources */,
 				87407CB1240A6C10000ADF81 /* Storyboards */,
 				87407CAE240A6916000ADF81 /* Application+Scene Delegate */,
 				87407CAF240A6A40000ADF81 /* Controllers */,
-				6030FC7823FF0C7A007F0901 /* Assets.xcassets */,
 				6030FC7D23FF0C7A007F0901 /* Info.plist */,
 			);
 			path = OnrampProject;
@@ -158,6 +158,14 @@
 				6030FC7A23FF0C7A007F0901 /* LaunchScreen.storyboard */,
 			);
 			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		87407CB2240A6C89000ADF81 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				6030FC7823FF0C7A007F0901 /* Assets.xcassets */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
