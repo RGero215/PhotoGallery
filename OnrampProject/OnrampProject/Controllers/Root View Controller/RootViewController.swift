@@ -16,7 +16,7 @@ final class RootViewController: UITabBarController {
         // Do any additional setup after loading the view.
         setupLightAndDarkMode()
         viewControllers = [
-            createNavController(viewController: UIViewController(), title: "Photo Gallery", imageName: "iphoto-gallery"),
+            createNavController(viewController: PhotoGalleryController(), title: "Photo Gallery", imageName: "iphoto-gallery"),
             createNavController(viewController: UIViewController(), title: "AR Gallery", imageName: "ARKit"),
             createNavController(viewController: UIViewController(), title: "User", imageName: "user"),
         ]
