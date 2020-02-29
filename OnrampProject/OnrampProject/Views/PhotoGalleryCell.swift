@@ -9,6 +9,13 @@ import UIKit
 
 class PhotoGalleryCell: UICollectionViewCell {
     
+    let titleLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Title"
+        label.font = .boldSystemFont(ofSize: 30)
+        return label
+    }()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
