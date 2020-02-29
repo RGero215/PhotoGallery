@@ -9,13 +9,17 @@ import UIKit
 
 class PhotoRowCell: UICollectionViewCell {
     
+    //MARK:- COMPONENTS
+    let imageView =  UIImageView(cornerRadius: 16)
     
     //MARK:- LIFE CYCLE
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        addSubview(imageView)
+        imageView.fillSuperview()
+        imageView.backgroundColor = .blue
         
-        backgroundColor = .purple
     }
     
     required init?(coder: NSCoder) {
