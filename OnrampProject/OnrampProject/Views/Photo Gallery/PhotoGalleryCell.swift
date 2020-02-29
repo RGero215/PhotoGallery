@@ -10,7 +10,7 @@ import UIKit
 class PhotoGalleryCell: UICollectionViewCell {
     
     //MARK:- COMPONENTS PROPERTIES
-    
+   
     let titleLabel = UILabel(text: "Photo Title", font: .boldSystemFont(ofSize: 30))
     
     //MARK: - HORIZONTAL CONTROLLER

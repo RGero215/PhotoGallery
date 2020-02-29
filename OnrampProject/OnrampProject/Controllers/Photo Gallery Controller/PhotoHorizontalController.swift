@@ -11,6 +11,8 @@ class PhotoHorizontalController: BaseCollectionViewController {
     
     // MARK:- PROPERTIES
     let cellId = "cellId"
+    var artworks = [Artwork]()
+    var chapter: Chapters!
     
     
     // MARK:- LIFE CYCLE
@@ -28,14 +30,15 @@ class PhotoHorizontalController: BaseCollectionViewController {
     
     // MARK:- COLLECTION VIEW PROTOCOLS
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        self.artworks = self.artworks.filter { chapter.artwork.contains($0.id)}
+        return artworks.count
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as? PhotoRowCell
-        
-        
-        
+        self.artworks = self.artworks.filter{ chapter.artwork.contains($0.id)}
+        let artwork = artworks[indexPath.item]
+        let image = URL(string: artwork.image)
         return cell!
     }
 }
