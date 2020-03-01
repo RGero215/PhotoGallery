@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import AVFoundation
+import AVKit
 
 class PhotoFullScreenController: UITableViewController {
     
@@ -13,6 +15,7 @@ class PhotoFullScreenController: UITableViewController {
     var artwork: Artwork?
     var chapter: Chapters?
     var playButton: UIButton?
+    var timeline: URL?
     
     //MARK:- CLOUSURE
     var dismissHandler: (() ->())?
@@ -38,6 +41,7 @@ class PhotoFullScreenController: UITableViewController {
             let headerCell = PhotoFullScreenHeader()
             headerCell.closeButton.addTarget(self, action: #selector(handleDismiss), for: .touchUpInside)
             headerCell.playButton.addTarget(self, action: #selector(handlePlay), for: .touchUpInside)
+            timeline = URL(string: artwork?.timeline ?? "")
             headerCell.photoCell.artwork = artwork
             headerCell.photoCell.artworkName.text = nil
             headerCell.photoCell.imageView.sd_setImage(with: URL(string: artwork!.image))
@@ -71,15 +75,21 @@ class PhotoFullScreenController: UITableViewController {
     }
     
     @objc fileprivate func handlePlay(button: UIButton) {
-        let videoVC = UIViewController()
+        
+        let videoURL = timeline ?? URL(string: "")
+        let player = AVPlayer(url: videoURL!)
+        let playerViewController = AVPlayerViewController()
+        playerViewController.player = player
         // Add Fade animation
         CATransaction.begin()
         CATransaction.setDisableActions(true)
         let animation = CATransition()
         animation.type = CATransitionType.fade
         self.navigationController?.view.layer.add(animation, forKey: "videoVC")
-        
-        _ = self.navigationController?.pushViewController(videoVC, animated: false)
+
+        _ = present(playerViewController, animated: false){
+            player.play()
+        }
         CATransaction.commit()
     }
 }
