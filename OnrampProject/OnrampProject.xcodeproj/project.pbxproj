@@ -210,6 +210,7 @@
 		87407CAF240A6A40000ADF81 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				87568362240C221800F36E9E /* Horizontal Snapping */,
 				87407CBA240A7F9D000ADF81 /* Base Collection View  */,
 				87407CB7240A7EB7000ADF81 /* Photo Gallery Controller */,
 				87407CB0240A6A5C000ADF81 /* Root View Controller */,
@@ -258,7 +259,6 @@
 				8756833F240AF8F900F36E9E /* Extensions.swift */,
 				87568359240B453A00F36E9E /* VerticalStackView.swift */,
 				87568360240C1E7E00F36E9E /* BetterSnappingLayout.swift */,
-				8756835E240C1E0D00F36E9E /* HorizontalSnappingController.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -317,6 +317,14 @@
 				8756834F240B17B300F36E9E /* CaptureNarcos.swift */,
 			);
 			path = Service;
+			sourceTree = "<group>";
+		};
+		87568362240C221800F36E9E /* Horizontal Snapping */ = {
+			isa = PBXGroup;
+			children = (
+				8756835E240C1E0D00F36E9E /* HorizontalSnappingController.swift */,
+			);
+			path = "Horizontal Snapping";
 			sourceTree = "<group>";
 		};
 		B06F641C18E97FD9030C5644 /* Frameworks */ = {
