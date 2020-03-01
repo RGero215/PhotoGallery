@@ -7,7 +7,7 @@
 
 import UIKit
 
-class PhotoHorizontalController: BaseCollectionViewController {
+class PhotoHorizontalController: HorizontalSnappingController {
     
     // MARK:- PROPERTIES
     let cellId = "cellId"
