@@ -61,7 +61,8 @@ class PhotoGalleryController: BaseCollectionViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        self.navigationController?.setNavigationBarHidden(true, animated: true)
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
+        self.tabBarController?.tabBar.isHidden = false
     }
     
     //MARK:- FILEPRIVATE FUNCTIONS
@@ -158,10 +159,6 @@ extension PhotoGalleryController: UICollectionViewDelegateFlowLayout {
                 
                 self?.view.layoutIfNeeded()
                 
-                
-
-                self?.tabBarController?.tabBar.transform = CGAffineTransform(translationX: 0, y: 100)
-                self?.tabBarController?.tabBar.frame.origin.y = (self?.view.frame.size.height)!
                 self?.tabBarController?.tabBar.isHidden = true
             }, completion: nil)
             
@@ -193,6 +190,6 @@ extension PhotoGalleryController {
     
     @objc func handleRemoveView() {
         navigationController?.popViewController(animated: false)
-
+        self.tabBarController?.tabBar.isHidden = false
     }
 }

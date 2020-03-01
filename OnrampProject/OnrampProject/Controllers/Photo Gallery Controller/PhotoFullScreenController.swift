@@ -29,6 +29,16 @@ class PhotoFullScreenController: UITableViewController {
         tableView.allowsSelection = false
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        self.navigationController?.setNavigationBarHidden(true, animated: true)
+    }
+    
+    //MARK:- STATUS BAR PREF
+    override var prefersStatusBarHidden: Bool {
+        return true
+    }
+    
     //MARK:- TABLE VIEW PROTOCOLS
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
