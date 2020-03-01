@@ -39,6 +39,7 @@
 		87568361240C1E7E00F36E9E /* BetterSnappingLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87568360240C1E7E00F36E9E /* BetterSnappingLayout.swift */; };
 		87568364240C233300F36E9E /* CaptureNarcosRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87568363240C233300F36E9E /* CaptureNarcosRequest.swift */; };
 		87568367240C27F500F36E9E /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87568366240C27F500F36E9E /* Configuration.swift */; };
+		8756836A240C2E8900F36E9E /* PhotoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87568369240C2E8900F36E9E /* PhotoViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -96,6 +97,7 @@
 		87568360240C1E7E00F36E9E /* BetterSnappingLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BetterSnappingLayout.swift; sourceTree = "<group>"; };
 		87568363240C233300F36E9E /* CaptureNarcosRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptureNarcosRequest.swift; sourceTree = "<group>"; };
 		87568366240C27F500F36E9E /* Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
+		87568369240C2E8900F36E9E /* PhotoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoViewModel.swift; sourceTree = "<group>"; };
 		8E44361E8B62B28FC3F67396 /* Pods_OnrampProject.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OnrampProject.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		95DBD5FECBC232F568B49BD4 /* Pods-OnrampProject-OnrampProjectUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OnrampProject-OnrampProjectUITests.release.xcconfig"; path = "Target Support Files/Pods-OnrampProject-OnrampProjectUITests/Pods-OnrampProject-OnrampProjectUITests.release.xcconfig"; sourceTree = "<group>"; };
 		9EEE961888E737135AD3011B /* Pods-OnrampProjectTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OnrampProjectTests.release.xcconfig"; path = "Target Support Files/Pods-OnrampProjectTests/Pods-OnrampProjectTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -171,6 +173,7 @@
 		6030FC6E23FF0C79007F0901 /* OnrampProject */ = {
 			isa = PBXGroup;
 			children = (
+				87568368240C2E3400F36E9E /* View Model */,
 				87568365240C27D200F36E9E /* Configuration */,
 				8756834E240B179E00F36E9E /* Service */,
 				87568345240B151D00F36E9E /* Model */,
@@ -339,6 +342,14 @@
 				87568366240C27F500F36E9E /* Configuration.swift */,
 			);
 			path = Configuration;
+			sourceTree = "<group>";
+		};
+		87568368240C2E3400F36E9E /* View Model */ = {
+			isa = PBXGroup;
+			children = (
+				87568369240C2E8900F36E9E /* PhotoViewModel.swift */,
+			);
+			path = "View Model";
 			sourceTree = "<group>";
 		};
 		B06F641C18E97FD9030C5644 /* Frameworks */ = {
@@ -593,6 +604,7 @@
 				8756834D240B16E900F36E9E /* Songs.swift in Sources */,
 				87568361240C1E7E00F36E9E /* BetterSnappingLayout.swift in Sources */,
 				8756833B240AF1A800F36E9E /* PhotoGalleryCell.swift in Sources */,
+				8756836A240C2E8900F36E9E /* PhotoViewModel.swift in Sources */,
 				87568340240AF8F900F36E9E /* Extensions.swift in Sources */,
 				87568356240B34DA00F36E9E /* PhotoFullScreenHeader.swift in Sources */,
 				87568367240C27F500F36E9E /* Configuration.swift in Sources */,

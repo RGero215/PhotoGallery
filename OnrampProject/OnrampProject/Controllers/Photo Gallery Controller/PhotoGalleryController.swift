@@ -11,6 +11,13 @@ import SDWebImage
 class PhotoGalleryController: BaseCollectionViewController {
     
     //MARK: - PROPERTIES
+    var viewModel: PhotoViewModel? {
+        didSet {
+            guard let viewModel = viewModel else {return}
+            setupViewModel(with: viewModel)
+        }
+    }
+    
     let cellId = "cellId"
     fileprivate var chapters = [Chapters]()
     fileprivate var artworks = [Artwork]()
@@ -31,11 +38,7 @@ class PhotoGalleryController: BaseCollectionViewController {
         activityIndicator.hidesWhenStopped = true
         return activityIndicator
     }()
-    
-    // Sync data fetch together
-    let dispatchGroup = DispatchGroup()
-    
-    
+   
     //MARK: - LIFE CYCLE
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,17 +49,6 @@ class PhotoGalleryController: BaseCollectionViewController {
         view.addSubview(activityIndicartorView)
         activityIndicartorView.fillSuperview()
         
-        // fetch photos
-        fetchData()
-        fetchArtwork()
-        
-        // Completion notification
-        dispatchGroup.notify(queue: .main) {
-            print("Completed dispatch group task...")
-            // Stop Activity indicator
-            self.activityIndicartorView.stopAnimating()
-            self.collectionView.reloadData()
-        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -65,38 +57,34 @@ class PhotoGalleryController: BaseCollectionViewController {
         self.tabBarController?.tabBar.isHidden = false
     }
     
-    //MARK:- FILEPRIVATE FUNCTIONS
-    
-    fileprivate func fetchData() {
-        dispatchGroup.enter()
-        CaptureNarcos.shared.fetchChapters { (chapters, err) in
-            self.dispatchGroup.leave()
-            if let err = err {
-                print("Failed to fetch chapters: ", err)
+    //MARK:- SETUP VIEW MODEL
+    private func setupViewModel(with viewModel: PhotoViewModel) {
+        viewModel.didFetchChaptersData = { (chapters, error) in
+            if let error = error {
+                print("Failed to fetch data: ", error)
                 return
             }
-            
             guard let chapters = chapters else {return}
             self.chapters = chapters
-            
-            self.fetchArtwork()
-            
         }
-    }
-    
-    fileprivate func fetchArtwork() {
-        self.dispatchGroup.enter()
-        CaptureNarcos.shared.fetchArtwork { (artworks, err) in
-            self.dispatchGroup.leave()
-            if let err = err {
-                print("Failed to fetch artworks: ", err)
+        
+        viewModel.didFetchArtworksData = { (artworks, error) in
+            if let error = error {
+                print("Failed to fetch data: ", error)
                 return
             }
             guard let artworks = artworks else {return}
             self.artworks = artworks
         }
+        
+        // Completion notification
+        viewModel.dispatchGroup.notify(queue: .main) {
+            print("Completed dispatch group task...")
+            // Stop Activity indicator
+            self.activityIndicartorView.stopAnimating()
+            self.collectionView.reloadData()
+        }
     }
-    
     
 }
 

@@ -8,6 +8,9 @@
 import UIKit
 
 final class RootViewController: UITabBarController {
+    
+    //MARK:- PROPERTIES
+    
 
     // MARK: - VIEW LIFE CYCLE
     
@@ -15,11 +18,14 @@ final class RootViewController: UITabBarController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         setupLightAndDarkMode()
+        
         viewControllers = [
             createNavController(viewController: PhotoGalleryController(), title: "Photo Gallery", imageName: "iphoto-gallery"),
             createNavController(viewController: UIViewController(), title: "AR Gallery", imageName: "ARKit"),
             createNavController(viewController: UIViewController(), title: "User", imageName: "user"),
         ]
+        
+        
     }
     
     //MARK: - CREATE NAV CONTROLLER
@@ -33,6 +39,14 @@ final class RootViewController: UITabBarController {
         viewController.view.backgroundColor = .white
         navController.tabBarItem?.title = title
         navController.tabBarItem.image = UIImage(named: imageName)
+        
+        // Dependency Injection
+        switch viewController {
+        case let viewController as PhotoGalleryController:
+            viewController.viewModel = PhotoViewModel()
+        default:
+            break
+        }
         
         return navController
     }
