@@ -14,6 +14,10 @@ class PhotoHorizontalController: BaseCollectionViewController {
     var artworks = [Artwork]()
     var chapter: Chapters!
     
+    
+    //MARK: PHOTO FULL SCREEN REFERENCE
+    var photoFullScreenController: PhotoFullScreenController!
+    
     //MARK:- CLOUSURE
     var didSelectHandler: ((Artwork) -> ())?
     
@@ -43,14 +47,20 @@ class PhotoHorizontalController: BaseCollectionViewController {
         self.artworks = self.artworks.filter{ chapter.artwork.contains($0.id)}
         let artwork = artworks[indexPath.item]
         let image = URL(string: artwork.image)
+        cell?.artworkName.text = nil
         cell?.imageView.sd_setImage(with:image)
         return cell!
     }
     
     //MARK:- DID SELECT ARTWORK
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let artwork = artworks[indexPath.item]
+        
+        let artwork = artworks[indexPath.row]
+        
         didSelectHandler?(artwork)
+        
+        
+        
     }
 }
 
@@ -63,3 +73,5 @@ extension PhotoHorizontalController: UICollectionViewDelegateFlowLayout {
         return .init(top: 8, left: 8, bottom: 0, right: 8)
     }
 }
+
+

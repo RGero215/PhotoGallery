@@ -14,6 +14,14 @@ class PhotoGalleryController: BaseCollectionViewController {
     let cellId = "cellId"
     fileprivate var chapters = [Chapters]()
     fileprivate var artworks = [Artwork]()
+    var startingFrame: CGRect?
+    var topConstraint: NSLayoutConstraint?
+    var leadingConstraint: NSLayoutConstraint?
+    var widthConstraint: NSLayoutConstraint?
+    var heightConstraint: NSLayoutConstraint?
+    
+    //MARK: - REFERENCE HORIZONTAL
+    var photoFullScreenController: PhotoFullScreenController?
     
     //MARK: - ACTIVITY INDICATOR
     let activityIndicartorView: UIActivityIndicatorView = {
@@ -49,6 +57,11 @@ class PhotoGalleryController: BaseCollectionViewController {
             self.activityIndicartorView.stopAnimating()
             self.collectionView.reloadData()
         }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        self.navigationController?.setNavigationBarHidden(true, animated: true)
     }
     
     //MARK:- FILEPRIVATE FUNCTIONS
@@ -101,15 +114,68 @@ extension PhotoGalleryController: UICollectionViewDelegateFlowLayout {
         
         cell?.horizontalController.didSelectHandler = { [weak self] artwork in
             
+            let fullScreen = PhotoFullScreenController()
+            
+            fullScreen.artwork = artwork
+            fullScreen.chapter = chapter
+            
+            fullScreen.dismissHandler = {
+                self?.handleRemoveView()
+            }
+            
+            let fullScreenView = fullScreen.view!
+            self?.view.addSubview(fullScreenView)
+
+            self?.photoFullScreenController = fullScreen
+            
+            guard let cell = collectionView.cellForItem(at: indexPath) else {return}
+            
+            // Absolute coordinate of cell
+            guard let startingFrame = cell.superview?.convert(cell.frame, to: nil) else {return}
+            self?.startingFrame = startingFrame
+            
+            // auto layout constrait animations
+            fullScreenView.translatesAutoresizingMaskIntoConstraints = false
+            self?.topConstraint = fullScreenView.topAnchor.constraint(equalTo: self!.view.topAnchor, constant: startingFrame.origin.y)
+            self?.leadingConstraint = fullScreenView.leadingAnchor.constraint(equalTo: self!.view.leadingAnchor, constant: startingFrame.origin.x)
+            self?.widthConstraint = fullScreenView.widthAnchor.constraint(equalToConstant: startingFrame.width)
+            self?.heightConstraint = fullScreenView.heightAnchor.constraint(equalToConstant: startingFrame.height)
+            
+            [self?.topConstraint, self?.leadingConstraint, self?.widthConstraint, self?.heightConstraint].forEach({$0?.isActive = true})
+            
+            self?.view.layoutIfNeeded()
+            fullScreenView.layoutIfNeeded()
+            
+            
+            fullScreenView.layer.cornerRadius = 16
+            
+            UIView.animate(withDuration: 0.7, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.7, options: .curveEaseOut, animations: {
+                
+                self?.topConstraint?.constant = 0
+                self?.leadingConstraint?.constant = 0
+                self?.widthConstraint?.constant = (self?.view.frame.width)!
+                self?.heightConstraint?.constant = (self?.view.frame.height)!
+                
+                self?.view.layoutIfNeeded()
+                
+                
+
+                self?.tabBarController?.tabBar.transform = CGAffineTransform(translationX: 0, y: 100)
+                self?.tabBarController?.tabBar.frame.origin.y = (self?.view.frame.size.height)!
+                self?.tabBarController?.tabBar.isHidden = true
+            }, completion: nil)
+            
+            
+            fullScreen.artwork = artwork
+            
             // Add Fade animation
-            let artworkDetailController = UIViewController()
             CATransaction.begin()
             CATransaction.setDisableActions(true)
             let animation = CATransition()
             animation.type = CATransitionType.fade
             self?.navigationController?.view.layer.add(animation, forKey: "didSelect")
             
-            _ = self?.navigationController?.pushViewController(artworkDetailController, animated: false)
+            _ = self?.navigationController?.pushViewController(fullScreen, animated: false)
             CATransaction.commit()
         }
         
@@ -120,4 +186,13 @@ extension PhotoGalleryController: UICollectionViewDelegateFlowLayout {
         return .init(width: view.frame.width, height: 300)
     }
 
+}
+
+
+extension PhotoGalleryController {
+    
+    @objc func handleRemoveView() {
+        navigationController?.popViewController(animated: false)
+
+    }
 }
