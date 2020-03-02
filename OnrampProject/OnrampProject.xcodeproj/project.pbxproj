@@ -18,6 +18,8 @@
 		6030FC8723FF0C7A007F0901 /* OnrampProjectTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6030FC8623FF0C7A007F0901 /* OnrampProjectTests.swift */; };
 		6030FC9223FF0C7A007F0901 /* OnrampProjectUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6030FC9123FF0C7A007F0901 /* OnrampProjectUITests.swift */; };
 		72EE0D2E0B6C54881D308248 /* Pods_OnrampProject.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E44361E8B62B28FC3F67396 /* Pods_OnrampProject.framework */; };
+		8708DDD0240C94A500A09254 /* GalleryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8708DDCF240C94A500A09254 /* GalleryViewController.swift */; };
+		8708DDD2240CA99700A09254 /* Plane.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8708DDD1240CA99700A09254 /* Plane.swift */; };
 		87407CB6240A7E10000ADF81 /* UIView+Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87407CB5240A7E10000ADF81 /* UIView+Layout.swift */; };
 		87407CB9240A7EF5000ADF81 /* PhotoGalleryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87407CB8240A7EF5000ADF81 /* PhotoGalleryController.swift */; };
 		87407CBC240A7FDE000ADF81 /* BaseCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87407CBB240A7FDE000ADF81 /* BaseCollectionViewController.swift */; };
@@ -40,6 +42,7 @@
 		87568364240C233300F36E9E /* CaptureNarcosRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87568363240C233300F36E9E /* CaptureNarcosRequest.swift */; };
 		87568367240C27F500F36E9E /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87568366240C27F500F36E9E /* Configuration.swift */; };
 		8756836A240C2E8900F36E9E /* PhotoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87568369240C2E8900F36E9E /* PhotoViewModel.swift */; };
+		8756836D240C6A0E00F36E9E /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 8756836C240C6A0E00F36E9E /* art.scnassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -76,6 +79,8 @@
 		6030FC9123FF0C7A007F0901 /* OnrampProjectUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnrampProjectUITests.swift; sourceTree = "<group>"; };
 		6030FC9323FF0C7A007F0901 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6DD4DE6F8CFFAA9F7E02A9C7 /* Pods-OnrampProject.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OnrampProject.release.xcconfig"; path = "Target Support Files/Pods-OnrampProject/Pods-OnrampProject.release.xcconfig"; sourceTree = "<group>"; };
+		8708DDCF240C94A500A09254 /* GalleryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryViewController.swift; sourceTree = "<group>"; };
+		8708DDD1240CA99700A09254 /* Plane.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Plane.swift; sourceTree = "<group>"; };
 		87407CB5240A7E10000ADF81 /* UIView+Layout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Layout.swift"; sourceTree = "<group>"; };
 		87407CB8240A7EF5000ADF81 /* PhotoGalleryController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoGalleryController.swift; sourceTree = "<group>"; };
 		87407CBB240A7FDE000ADF81 /* BaseCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCollectionViewController.swift; sourceTree = "<group>"; };
@@ -98,6 +103,7 @@
 		87568363240C233300F36E9E /* CaptureNarcosRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptureNarcosRequest.swift; sourceTree = "<group>"; };
 		87568366240C27F500F36E9E /* Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
 		87568369240C2E8900F36E9E /* PhotoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoViewModel.swift; sourceTree = "<group>"; };
+		8756836C240C6A0E00F36E9E /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = art.scnassets; sourceTree = "<group>"; };
 		8E44361E8B62B28FC3F67396 /* Pods_OnrampProject.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OnrampProject.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		95DBD5FECBC232F568B49BD4 /* Pods-OnrampProject-OnrampProjectUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OnrampProject-OnrampProjectUITests.release.xcconfig"; path = "Target Support Files/Pods-OnrampProject-OnrampProjectUITests/Pods-OnrampProject-OnrampProjectUITests.release.xcconfig"; sourceTree = "<group>"; };
 		9EEE961888E737135AD3011B /* Pods-OnrampProjectTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OnrampProjectTests.release.xcconfig"; path = "Target Support Files/Pods-OnrampProjectTests/Pods-OnrampProjectTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -206,6 +212,15 @@
 			path = OnrampProjectUITests;
 			sourceTree = "<group>";
 		};
+		8708DDCE240C943000A09254 /* Gallery */ = {
+			isa = PBXGroup;
+			children = (
+				8708DDCF240C94A500A09254 /* GalleryViewController.swift */,
+				8708DDD1240CA99700A09254 /* Plane.swift */,
+			);
+			path = Gallery;
+			sourceTree = "<group>";
+		};
 		87407CAE240A6916000ADF81 /* Application+Scene Delegate */ = {
 			isa = PBXGroup;
 			children = (
@@ -218,6 +233,7 @@
 		87407CAF240A6A40000ADF81 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				8708DDCE240C943000A09254 /* Gallery */,
 				87568362240C221800F36E9E /* Horizontal Snapping */,
 				87407CBA240A7F9D000ADF81 /* Base Collection View  */,
 				87407CB7240A7EB7000ADF81 /* Photo Gallery Controller */,
@@ -247,6 +263,7 @@
 			isa = PBXGroup;
 			children = (
 				6030FC7823FF0C7A007F0901 /* Assets.xcassets */,
+				8756836C240C6A0E00F36E9E /* art.scnassets */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -471,6 +488,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6030FC7C23FF0C7A007F0901 /* LaunchScreen.storyboard in Resources */,
+				8756836D240C6A0E00F36E9E /* art.scnassets in Resources */,
 				6030FC7923FF0C7A007F0901 /* Assets.xcassets in Resources */,
 				6030FC7723FF0C79007F0901 /* Main.storyboard in Resources */,
 			);
@@ -601,10 +619,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				87568364240C233300F36E9E /* CaptureNarcosRequest.swift in Sources */,
+				8708DDD2240CA99700A09254 /* Plane.swift in Sources */,
 				8756834D240B16E900F36E9E /* Songs.swift in Sources */,
 				87568361240C1E7E00F36E9E /* BetterSnappingLayout.swift in Sources */,
 				8756833B240AF1A800F36E9E /* PhotoGalleryCell.swift in Sources */,
 				8756836A240C2E8900F36E9E /* PhotoViewModel.swift in Sources */,
+				8708DDD0240C94A500A09254 /* GalleryViewController.swift in Sources */,
 				87568340240AF8F900F36E9E /* Extensions.swift in Sources */,
 				87568356240B34DA00F36E9E /* PhotoFullScreenHeader.swift in Sources */,
 				87568367240C27F500F36E9E /* Configuration.swift in Sources */,

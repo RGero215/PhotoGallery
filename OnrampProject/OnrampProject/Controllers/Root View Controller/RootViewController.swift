@@ -21,7 +21,7 @@ final class RootViewController: UITabBarController {
         
         viewControllers = [
             createNavController(viewController: PhotoGalleryController(), title: "Photo Gallery", imageName: "iphoto-gallery"),
-            createNavController(viewController: UIViewController(), title: "AR Gallery", imageName: "ARKit"),
+            createNavController(viewController: GalleryViewController(), title: "AR Gallery", imageName: "ARKit"),
             createNavController(viewController: UIViewController(), title: "User", imageName: "user"),
         ]
         
