@@ -15,3 +15,8 @@ enum CaptureNarcosService {
     static let song = "Song"
     static let animation = "Animation"
 }
+
+enum GalleryConfig {
+    static let scene = "art.scnassets/art-gallery.scn"
+    static let node = "portalNode"
+}

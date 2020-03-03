@@ -212,13 +212,13 @@
 			path = OnrampProjectUITests;
 			sourceTree = "<group>";
 		};
-		8708DDCE240C943000A09254 /* Gallery */ = {
+		8708DDCE240C943000A09254 /* AR Gallery */ = {
 			isa = PBXGroup;
 			children = (
-				8708DDCF240C94A500A09254 /* GalleryViewController.swift */,
 				8708DDD1240CA99700A09254 /* Plane.swift */,
+				8708DDCF240C94A500A09254 /* GalleryViewController.swift */,
 			);
-			path = Gallery;
+			path = "AR Gallery";
 			sourceTree = "<group>";
 		};
 		87407CAE240A6916000ADF81 /* Application+Scene Delegate */ = {
@@ -233,7 +233,7 @@
 		87407CAF240A6A40000ADF81 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				8708DDCE240C943000A09254 /* Gallery */,
+				8708DDCE240C943000A09254 /* AR Gallery */,
 				87568362240C221800F36E9E /* Horizontal Snapping */,
 				87407CBA240A7F9D000ADF81 /* Base Collection View  */,
 				87407CB7240A7EB7000ADF81 /* Photo Gallery Controller */,

@@ -24,6 +24,8 @@ class GalleryViewController: UIViewController, ARSCNViewDelegate {
         return true
     }
     
+    //MARK:- LIFE CYCLE
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.navigationBar.isHidden = true
@@ -49,8 +51,30 @@ class GalleryViewController: UIViewController, ARSCNViewDelegate {
         // Set the scene to the view
         sceneView.scene = scene
         
-         registerGestureRecognizers()
+        
+        registerGestureRecognizers()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        // Create a session configuration
+        let configuration = ARWorldTrackingConfiguration()
+        
+        configuration.planeDetection = .horizontal
+
+        // Run the view's session
+        sceneView.session.run(configuration)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        // Pause the view's session
+        sceneView.session.pause()
+    }
+    
+    //MARK:- METHODS
     
     @objc func tapped(recognizer :UITapGestureRecognizer) {
         
@@ -70,12 +94,16 @@ class GalleryViewController: UIViewController, ARSCNViewDelegate {
     // this function adds the portal model to the real world
     private func addPortal(ht :ARHitTestResult) {
         
-        let portalScene = SCNScene(named: "art.scnassets/art-gallery.scn")!
-        let portalNode = (portalScene.rootNode.childNode(withName: "portalNode", recursively: true))!
+        if let portalScene = SCNScene(named: GalleryConfig.scene) {
+            let portalNode = (portalScene.rootNode.childNode(withName: GalleryConfig.node, recursively: true))!
+              
+            portalNode.position = SCNVector3(ht.worldTransform.columns.3.x, ht.worldTransform.columns.3.y, ht.worldTransform.columns.3.z)
+            
+            
+            self.sceneView.scene.rootNode.addChildNode(portalNode)
+            
+        }
         
-        portalNode.position = SCNVector3(ht.worldTransform.columns.3.x, ht.worldTransform.columns.3.y, ht.worldTransform.columns.3.z)
-        
-        self.sceneView.scene.rootNode.addChildNode(portalNode)
         
     }
     
@@ -108,26 +136,6 @@ class GalleryViewController: UIViewController, ARSCNViewDelegate {
         
         plane?.update(anchor: anchor as! ARPlaneAnchor)
     }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        // Create a session configuration
-        let configuration = ARWorldTrackingConfiguration()
-        
-        configuration.planeDetection = .horizontal
-
-        // Run the view's session
-        sceneView.session.run(configuration)
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        
-        // Pause the view's session
-        sceneView.session.pause()
-    }
-    
-   
+     
 }
 
