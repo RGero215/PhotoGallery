@@ -72,7 +72,10 @@ class PhotoFullScreenController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.row == 0 {
-            return 450
+            if let height = view.superview?.frame.height {
+                return height
+            }
+            
         }
         return super.tableView(tableView, heightForRowAt: indexPath)
     }
