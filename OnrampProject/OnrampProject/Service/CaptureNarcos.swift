@@ -45,20 +45,24 @@ class CaptureNarcos {
     // MARK:- FETCH GENERIC JSON
     func fetchGenericJSONData<T: Codable>(url: URL, completion: @escaping (T?, Error?) -> ()) {
         URLSession.shared.dataTask(with: url) { (data, resp, err) in
-                   
-           if let err = err {
+            
+            if let resp = resp as? HTTPURLResponse {
+                print("Status Code: \(resp.statusCode)")
+            }
+            
+            if let err = err {
                completion(nil, err)
                return
-           }
+            }
            
-           do {
+            do {
                let objects = try JSONDecoder().decode(T.self, from: data!)
                completion(objects, nil)
-           } catch {
+            } catch {
                completion(nil, error)
                print("Failed to decode: ", error)
-           }
+            }
            
-       }.resume()
+        }.resume()
     }
 }

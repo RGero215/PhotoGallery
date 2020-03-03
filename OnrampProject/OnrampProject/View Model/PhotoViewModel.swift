@@ -9,9 +9,14 @@ import Foundation
 
 class PhotoViewModel {
     
+    //MARK: ERROR
+    enum CaptureNarcosError: Error {
+        case noArtworkAvailable
+    }
+    
     //MARK:- PROPERTIES
-    typealias didFetchChaptersCompletion = ([Chapters]?, Error?) -> Void
-    typealias didFetchArtworkCompletion = ([Artwork]?, Error?) -> Void
+    typealias didFetchChaptersCompletion = ([Chapters]?, CaptureNarcosError?) -> Void
+    typealias didFetchArtworkCompletion = ([Artwork]?, CaptureNarcosError?) -> Void
     //Sync data fetch together
     let dispatchGroup = DispatchGroup()
     
@@ -32,13 +37,12 @@ class PhotoViewModel {
             self?.dispatchGroup.leave()
             if let err = err {
                 print("Failed to fetch chapters: ", err)
-                self?.didFetchChaptersData?(nil, err)
+                self?.didFetchChaptersData?(nil, .noArtworkAvailable)
                 return
             }
             
             guard let chapters = chapters else {return}
             self?.didFetchChaptersData?(chapters, nil)
-//            self.chapters = chapters
             
             self?.fetchArtwork()
             
@@ -51,12 +55,12 @@ class PhotoViewModel {
             self?.dispatchGroup.leave()
             if let err = err {
                 print("Failed to fetch artworks: ", err)
-                self?.didFetchArtworksData?(nil, err)
+                self?.didFetchArtworksData?(nil, .noArtworkAvailable)
                 return
             }
             guard let artworks = artworks else {return}
             self?.didFetchArtworksData?(artworks, nil)
-//            self.artworks = artworks
+
         }
     }
     

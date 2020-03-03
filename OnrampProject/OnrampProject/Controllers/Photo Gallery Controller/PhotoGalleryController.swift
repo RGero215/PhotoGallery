@@ -10,6 +10,11 @@ import SDWebImage
 
 class PhotoGalleryController: BaseCollectionViewController {
     
+    //MARK: - ALERT TYPE
+    private enum AlertType {
+        case noArtworkAvailable
+    }
+    
     //MARK: - PROPERTIES
     var viewModel: PhotoViewModel? {
         didSet {
@@ -50,22 +55,23 @@ class PhotoGalleryController: BaseCollectionViewController {
     
     //MARK:- SETUP VIEW MODEL
     private func setupViewModel(with viewModel: PhotoViewModel) {
-        viewModel.didFetchChaptersData = { (chapters, error) in
-            if let error = error {
-                print("Failed to fetch data: ", error)
-                return
+        viewModel.didFetchChaptersData = { [weak self] (chapters, error) in
+            if let _ = error {
+                DispatchQueue.main.async {
+                    self?.presentAlert(of: .noArtworkAvailable)
+                }
+                
             }
             guard let chapters = chapters else {return}
-            self.chapters = chapters
+            self?.chapters = chapters
         }
         
-        viewModel.didFetchArtworksData = { (artworks, error) in
+        viewModel.didFetchArtworksData = {[weak self] (artworks, error) in
             if let error = error {
                 print("Failed to fetch data: ", error)
-                return
             }
             guard let artworks = artworks else {return}
-            self.artworks = artworks
+            self?.artworks = artworks
         }
         
         // Completion notification
@@ -166,9 +172,26 @@ extension PhotoGalleryController: UICollectionViewDelegateFlowLayout {
 
 
 extension PhotoGalleryController {
-    
+    //MARK:- HANDLE REMOVE VIEW
     @objc func handleRemoveView() {
         navigationController?.popViewController(animated: false)
         self.tabBarController?.tabBar.isHidden = false
+    }
+    
+    //MARK:- PRESENT ALERT
+    private func presentAlert(of alertType: AlertType) {
+        let title: String
+        let message: String
+        
+        switch alertType {
+        case .noArtworkAvailable:
+            title = "Unable to Fetch Artwork"
+            message = "The application is unable to fetch artwork data. Please make sure your device is connected over Wi-Fi or cellular."
+        }
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let cancelAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+        alertController.addAction(cancelAction)
+        
+        present(alertController, animated: true)
     }
 }
