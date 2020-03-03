@@ -22,7 +22,7 @@ final class RootViewController: UITabBarController {
         viewControllers = [
             createNavController(viewController: PhotoGalleryController(), title: "Photo Gallery", imageName: "iphoto-gallery"),
             createNavController(viewController: GalleryViewController(), title: "AR Gallery", imageName: "ARKit"),
-            createNavController(viewController: UIViewController(), title: "User", imageName: "user"),
+            createNavController(viewController: SettingsViewController(), title: "Settings", imageName: "user"),
         ]
         
         
@@ -44,6 +44,9 @@ final class RootViewController: UITabBarController {
         switch viewController {
         case let viewController as PhotoGalleryController:
             viewController.viewModel = PhotoViewModel()
+        case let viewController as SettingsViewController:
+            viewController.navigationItem.leftBarButtonItem?.tintColor = UIView().tintColor
+            viewController.navigationItem.rightBarButtonItem?.tintColor = UIView().tintColor
         default:
             break
         }

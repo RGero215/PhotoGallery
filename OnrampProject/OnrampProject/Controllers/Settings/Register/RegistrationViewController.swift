@@ -5,4 +5,11 @@
 //  Created by Ramon Geronimo on 3/3/20.
 //
 
-import Foundation
+import UIKit
+
+class RegistrationViewController: UIViewController {
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        view.backgroundColor = .red
+    }
+}
