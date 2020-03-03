@@ -95,13 +95,14 @@ class GalleryViewController: UIViewController, ARSCNViewDelegate {
     private func addPortal(ht :ARHitTestResult) {
         
         if let portalScene = SCNScene(named: GalleryConfig.scene) {
-            let portalNode = (portalScene.rootNode.childNode(withName: GalleryConfig.node, recursively: true))!
-              
-            portalNode.position = SCNVector3(ht.worldTransform.columns.3.x, ht.worldTransform.columns.3.y, ht.worldTransform.columns.3.z)
-            
-            
-            self.sceneView.scene.rootNode.addChildNode(portalNode)
-            
+            if let portalNode = portalScene.rootNode.childNode(withName: GalleryConfig.node, recursively: true) {
+                
+                portalNode.position = SCNVector3(ht.worldTransform.columns.3.x, ht.worldTransform.columns.3.y, ht.worldTransform.columns.3.z)
+                           
+                           
+                self.sceneView.scene.rootNode.addChildNode(portalNode)
+            }
+             
         }
         
         
