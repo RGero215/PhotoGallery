@@ -20,6 +20,7 @@
 		72EE0D2E0B6C54881D308248 /* Pods_OnrampProject.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E44361E8B62B28FC3F67396 /* Pods_OnrampProject.framework */; };
 		8708DDD0240C94A500A09254 /* GalleryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8708DDCF240C94A500A09254 /* GalleryViewController.swift */; };
 		8708DDD2240CA99700A09254 /* Plane.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8708DDD1240CA99700A09254 /* Plane.swift */; };
+		8708DDD6240EBFC800A09254 /* CaptureNarcosData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8708DDD5240EBFC800A09254 /* CaptureNarcosData.swift */; };
 		87407CB6240A7E10000ADF81 /* UIView+Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87407CB5240A7E10000ADF81 /* UIView+Layout.swift */; };
 		87407CB9240A7EF5000ADF81 /* PhotoGalleryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87407CB8240A7EF5000ADF81 /* PhotoGalleryController.swift */; };
 		87407CBC240A7FDE000ADF81 /* BaseCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87407CBB240A7FDE000ADF81 /* BaseCollectionViewController.swift */; };
@@ -81,6 +82,7 @@
 		6DD4DE6F8CFFAA9F7E02A9C7 /* Pods-OnrampProject.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OnrampProject.release.xcconfig"; path = "Target Support Files/Pods-OnrampProject/Pods-OnrampProject.release.xcconfig"; sourceTree = "<group>"; };
 		8708DDCF240C94A500A09254 /* GalleryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryViewController.swift; sourceTree = "<group>"; };
 		8708DDD1240CA99700A09254 /* Plane.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Plane.swift; sourceTree = "<group>"; };
+		8708DDD5240EBFC800A09254 /* CaptureNarcosData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptureNarcosData.swift; sourceTree = "<group>"; };
 		87407CB5240A7E10000ADF81 /* UIView+Layout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Layout.swift"; sourceTree = "<group>"; };
 		87407CB8240A7EF5000ADF81 /* PhotoGalleryController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoGalleryController.swift; sourceTree = "<group>"; };
 		87407CBB240A7FDE000ADF81 /* BaseCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCollectionViewController.swift; sourceTree = "<group>"; };
@@ -179,6 +181,7 @@
 		6030FC6E23FF0C79007F0901 /* OnrampProject */ = {
 			isa = PBXGroup;
 			children = (
+				8708DDD4240EBF9200A09254 /* Protocols */,
 				87568368240C2E3400F36E9E /* View Model */,
 				87568365240C27D200F36E9E /* Configuration */,
 				8756834E240B179E00F36E9E /* Service */,
@@ -219,6 +222,14 @@
 				8708DDCF240C94A500A09254 /* GalleryViewController.swift */,
 			);
 			path = "AR Gallery";
+			sourceTree = "<group>";
+		};
+		8708DDD4240EBF9200A09254 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				8708DDD5240EBFC800A09254 /* CaptureNarcosData.swift */,
+			);
+			path = Protocols;
 			sourceTree = "<group>";
 		};
 		87407CAE240A6916000ADF81 /* Application+Scene Delegate */ = {
@@ -628,6 +639,7 @@
 				87568340240AF8F900F36E9E /* Extensions.swift in Sources */,
 				87568356240B34DA00F36E9E /* PhotoFullScreenHeader.swift in Sources */,
 				87568367240C27F500F36E9E /* Configuration.swift in Sources */,
+				8708DDD6240EBFC800A09254 /* CaptureNarcosData.swift in Sources */,
 				87568352240B323000F36E9E /* PhotoFullScreenController.swift in Sources */,
 				87407CB6240A7E10000ADF81 /* UIView+Layout.swift in Sources */,
 				6030FC7423FF0C79007F0901 /* RootViewController.swift in Sources */,

@@ -16,3 +16,7 @@ struct Artwork: Codable {
     let name: String
     let timeline: String?
 }
+
+extension Artwork: ArtworkData {
+    
+}

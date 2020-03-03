@@ -12,8 +12,8 @@ import AVKit
 class PhotoFullScreenController: UITableViewController {
     
     // MARK:- PROPERTIES
-    var artwork: Artwork?
-    var chapter: Chapters?
+    var artwork: ArtworkData?
+    var chapter: ChapterData?
     var playButton: UIButton?
     var timeline: URL?
     

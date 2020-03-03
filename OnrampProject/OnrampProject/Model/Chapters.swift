@@ -12,3 +12,7 @@ struct Chapters: Codable {
     let description: String
     let artwork: [Int]
 }
+
+extension Chapters: ChapterData {
+    
+}

@@ -15,8 +15,8 @@ class PhotoViewModel {
     }
     
     //MARK:- PROPERTIES
-    typealias didFetchChaptersCompletion = ([Chapters]?, CaptureNarcosError?) -> Void
-    typealias didFetchArtworkCompletion = ([Artwork]?, CaptureNarcosError?) -> Void
+    typealias didFetchChaptersCompletion = ([ChapterData]?, CaptureNarcosError?) -> Void
+    typealias didFetchArtworkCompletion = ([ArtworkData]?, CaptureNarcosError?) -> Void
     //Sync data fetch together
     let dispatchGroup = DispatchGroup()
     

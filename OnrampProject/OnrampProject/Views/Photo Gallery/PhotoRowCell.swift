@@ -10,7 +10,7 @@ import UIKit
 class PhotoRowCell: UICollectionViewCell {
     
     //MARK:- PROPERTIES
-    var artwork: Artwork! {
+    var artwork: ArtworkData! {
         didSet {
             imageView.sd_setImage(with: URL(string: artwork.image))
             artworkName.text = "Name: \(artwork.name)"

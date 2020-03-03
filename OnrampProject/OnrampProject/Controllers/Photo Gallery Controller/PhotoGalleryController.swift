@@ -24,8 +24,8 @@ class PhotoGalleryController: BaseCollectionViewController {
     }
     
     let cellId = "cellId"
-    fileprivate var chapters = [Chapters]()
-    fileprivate var artworks = [Artwork]()
+    fileprivate var chapters = [ChapterData]()
+    fileprivate var artworks = [ArtworkData]()
     var startingFrame: CGRect?
     var topConstraint: NSLayoutConstraint?
     var leadingConstraint: NSLayoutConstraint?

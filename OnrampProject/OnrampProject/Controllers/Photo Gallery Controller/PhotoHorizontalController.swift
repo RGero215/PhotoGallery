@@ -11,15 +11,15 @@ class PhotoHorizontalController: HorizontalSnappingController {
     
     // MARK:- PROPERTIES
     let cellId = "cellId"
-    var artworks = [Artwork]()
-    var chapter: Chapters!
+    var artworks = [ArtworkData]()
+    var chapter: ChapterData!
     
     
     //MARK: PHOTO FULL SCREEN REFERENCE
     var photoFullScreenController: PhotoFullScreenController!
     
     //MARK:- CLOUSURE
-    var didSelectHandler: ((Artwork) -> ())?
+    var didSelectHandler: ((ArtworkData) -> ())?
     
     // MARK:- LIFE CYCLE
     
