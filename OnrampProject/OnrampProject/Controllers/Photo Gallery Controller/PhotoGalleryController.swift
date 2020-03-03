@@ -29,15 +29,6 @@ class PhotoGalleryController: BaseCollectionViewController {
     
     //MARK: - REFERENCE HORIZONTAL
     var photoFullScreenController: PhotoFullScreenController?
-    
-    //MARK: - ACTIVITY INDICATOR
-    let activityIndicartorView: UIActivityIndicatorView = {
-        let activityIndicator = UIActivityIndicatorView(style: .large)
-        activityIndicator.color = .black
-        activityIndicator.startAnimating()
-        activityIndicator.hidesWhenStopped = true
-        return activityIndicator
-    }()
    
     //MARK: - LIFE CYCLE
     override func viewDidLoad() {
@@ -46,8 +37,8 @@ class PhotoGalleryController: BaseCollectionViewController {
         collectionView.register(PhotoGalleryCell.self, forCellWithReuseIdentifier: cellId)
         
         // Add Activity Indicator
-        view.addSubview(activityIndicartorView)
-        activityIndicartorView.fillSuperview()
+        view.addSubview(activityIndicatorView)
+        activityIndicatorView.fillSuperview()
         
     }
     
@@ -81,7 +72,7 @@ class PhotoGalleryController: BaseCollectionViewController {
         viewModel.dispatchGroup.notify(queue: .main) {
             print("Completed dispatch group task...")
             // Stop Activity indicator
-            self.activityIndicartorView.stopAnimating()
+            self.activityIndicatorView.stopAnimating()
             self.collectionView.reloadData()
         }
     }
