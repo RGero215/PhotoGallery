@@ -34,8 +34,6 @@ class PhotoHorizontalController: HorizontalSnappingController {
     
     }
     
-    
-    
     // MARK:- COLLECTION VIEW PROTOCOLS
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         self.artworks = self.artworks.filter { chapter.artwork.contains($0.id)}
@@ -59,8 +57,6 @@ class PhotoHorizontalController: HorizontalSnappingController {
         
         didSelectHandler?(artwork)
         
-        
-        
     }
 }
 
@@ -72,6 +68,7 @@ extension PhotoHorizontalController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         return .init(top: 8, left: 8, bottom: 0, right: 8)
     }
+    
 }
 
 

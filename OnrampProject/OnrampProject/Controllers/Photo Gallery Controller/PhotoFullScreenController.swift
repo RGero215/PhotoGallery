@@ -23,7 +23,6 @@ class PhotoFullScreenController: UITableViewController {
     //MARK:- LIFE CYCLE
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         tableView.tableFooterView = UIView()
         tableView.separatorStyle = .none
         tableView.allowsSelection = false
