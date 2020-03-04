@@ -44,8 +44,6 @@ class PhotoViewModel {
             guard let chapters = chapters else {return}
             self?.didFetchChaptersData?(chapters, nil)
             
-            self?.fetchArtwork()
-            
         }
     }
     

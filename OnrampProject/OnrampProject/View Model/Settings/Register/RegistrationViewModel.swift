@@ -40,29 +40,38 @@ class RegistrationViewModel {
             }
             print("Successfully register user: ", res?.user.uid ?? "")
             
-            let filename = UUID().uuidString
-            let ref = Storage.storage().reference(withPath: "/images/\(filename)")
+            self.saveImageToFirebase(completion: completion)
             
-            let imageData = self.bindableImage.value?.jpegData(compressionQuality: 1) ?? Data()
             
-            ref.putData(imageData, metadata: nil) { (_, err) in
+        }
+        
+        
+    }
+    
+    fileprivate func saveImageToFirebase(completion: @escaping (Error?) -> ()) {
+        
+        let filename = UUID().uuidString
+        let ref = Storage.storage().reference(withPath: "/images/\(filename)")
+        
+        let imageData = self.bindableImage.value?.jpegData(compressionQuality: 1) ?? Data()
+        
+        ref.putData(imageData, metadata: nil) { (_, err) in
+            if let err = err {
+                completion(err)
+                return
+            }
+            
+            print("Finished uploading image to firebase storage")
+            ref.downloadURL { (url, err) in
                 if let err = err {
                     completion(err)
                     return
                 }
-                
-                print("Finished uploading image to firebase storage")
-                ref.downloadURL { (url, err) in
-                    if let err = err {
-                        completion(err)
-                        return
-                    }
-                    self.bindableIsRegistering.value = false
-                    print("Download image url: ", url?.absoluteString ?? "")
-                }
+                self.bindableIsRegistering.value = false
+                print("Download image url: ", url?.absoluteString ?? "")
+                completion(nil)
             }
         }
-        
         
     }
 
