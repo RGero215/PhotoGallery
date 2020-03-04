@@ -15,6 +15,9 @@ class RegistrationViewController: UIViewController {
     //MARK:- REGISTRATION VIEW MODEL
     let registrationViewModel = RegistrationViewModel()
     
+    //MARK:- PROPERTIES
+    let registeringHUD = JGProgressHUD(style: .dark)
+    
     //MARK:- LOAD VIEWS
     override func loadView() {
         view = registrationView
@@ -83,6 +86,10 @@ class RegistrationViewController: UIViewController {
         print("Register User...")
         guard let email = registrationView.emailTextField.text else {return}
         guard let password = registrationView.passwordTextField.text else {return}
+        
+        registeringHUD.textLabel.text = "Register"
+        registeringHUD.show(in: view)
+        
         Auth.auth().createUser(withEmail: email, password: password) { (res, err) in
             if let err = err {
                 print("Failed to register user: ", err)
@@ -207,9 +214,11 @@ extension RegistrationViewController {
     
     //MARK:- HUD ERROR
     fileprivate func showHUDWithError(error: Error) {
+        registeringHUD.dismiss()
         let hud = JGProgressHUD(style: .dark)
         hud.detailTextLabel.text = error.localizedDescription
         hud.show(in: self.view)
         hud.dismiss(afterDelay: 4)
     }
+    
 }
