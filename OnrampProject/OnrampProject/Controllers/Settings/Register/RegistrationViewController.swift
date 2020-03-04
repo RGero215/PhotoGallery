@@ -84,42 +84,15 @@ class RegistrationViewController: UIViewController {
     //MARK:- HANDLE REGISTER
     @objc fileprivate func handleRegister() {
         self.handleTapDismiss()
-        print("Register User...")
-        guard let email = registrationView.emailTextField.text else {return}
-        guard let password = registrationView.passwordTextField.text else {return}
         
-        registrationViewModel.bindableIsRegistering.value = true
-        
-        Auth.auth().createUser(withEmail: email, password: password) { (res, err) in
+        registrationViewModel.performRegistration { [weak self] (err) in
             if let err = err {
-                print("Failed to register user: ", err)
-                self.showHUDWithError(error: err)
+                self?.showHUDWithError(error: err)
                 return
             }
-            print("Successfully register user: ", res?.user.uid ?? "")
-            
-            let filename = UUID().uuidString
-            let ref = Storage.storage().reference(withPath: "/images/\(filename)")
-            
-            let imageData = self.registrationViewModel.bindableImage.value?.jpegData(compressionQuality: 1) ?? Data()
-            
-            ref.putData(imageData, metadata: nil) { (_, err) in
-                if let err = err {
-                    self.showHUDWithError(error: err)
-                    return
-                }
-                
-                print("Finished uploading image to firebase storage")
-                ref.downloadURL { (url, err) in
-                    if let err = err {
-                        self.showHUDWithError(error: err)
-                        return
-                    }
-                    self.registrationViewModel.bindableIsRegistering.value = false
-                    print("Download image url: ", url?.absoluteString ?? "")
-                }
-            }
+            print("Finished registering user...")
         }
+        
     }
     
     @objc fileprivate func handleGoToLogin() {
