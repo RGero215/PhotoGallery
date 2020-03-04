@@ -10,9 +10,26 @@ import UIKit
 class RegistrationViewController: UIViewController {
     //MARK:- PROPERTIES
     lazy var width = view.frame.width
-    lazy var stackView = VerticalStackView(arrangedSubviews: [selectPhotoButton, fullNameTextField, emailTextField, passwordTextField, register])
+    var activeTextField: UITextField?
+    
     
     //MARK:- UI COMPONENTS
+    let scrollView: UIScrollView = {
+        let scrollView = UIScrollView()
+        scrollView.isDirectionalLockEnabled = true
+        scrollView.contentInsetAdjustmentBehavior = .never
+        return scrollView
+    }()
+    
+    lazy var verticalStackView: VerticalStackView = {
+        let stackView = VerticalStackView(arrangedSubviews: [fullNameTextField, emailTextField, passwordTextField, register])
+        stackView.distribution = .fillEqually
+        stackView.spacing = 8
+        return stackView
+    }()
+    
+    lazy var overallStackView = UIStackView(arrangedSubviews: [selectPhotoButton, verticalStackView])
+    
     let backgroundImage: UIImageView = {
         let iv = UIImageView()
         iv.image = UIImage(named: "Untitled_Artwork 5")
@@ -86,11 +103,35 @@ class RegistrationViewController: UIViewController {
         setupLayout()
         setupNotificationObservers()
         setupTapGesture()
+        scrollView.delegate = self
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         NotificationCenter.default.removeObserver(self)
+    }
+    
+    //MARK: - OVERRIDE METHOD
+    
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+
+    }
+    
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        if UIDevice.current.orientation.isLandscape {
+            handleTapDismiss()
+            overallStackView.axis = .horizontal
+        } else {
+            handleTapDismiss()
+            overallStackView.axis = .vertical
+        }
+    }
+    
+    
+    //MARK:- TEXTFIELD DID BEGIN EDITING
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        activeTextField = textField
     }
     
     //MARK:- FILEPRIVATE METHODS
@@ -101,6 +142,7 @@ class RegistrationViewController: UIViewController {
     
     @objc fileprivate func handleTapDismiss() {
         self.view.endEditing(true)
+        self.view.transform = .identity
     }
     
     @objc fileprivate func handleRegister() {
@@ -111,32 +153,59 @@ class RegistrationViewController: UIViewController {
         
     }
     
+    
+    //MARK:- SETUP LAYOUTS
     fileprivate func setupLayout() {
         view.addSubview(backgroundImage)
         backgroundImage.fillSuperview()
-        view.addSubview(stackView)
-        stackView.spacing = 8
-        stackView.anchor(top: nil, leading: view.leadingAnchor, bottom: nil, trailing: view.trailingAnchor, padding: .init(top: 0, left: 50, bottom: 0, right: 50))
-        stackView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+        view.addSubview(scrollView)
+        scrollView.fillSuperview()
+        scrollView.contentSize = view.frame.size
+        scrollView.addSubview(overallStackView)
+        overallStackView.spacing = 8
+        overallStackView.axis = .vertical
+        selectPhotoButton.widthAnchor.constraint(equalToConstant: 275).isActive = true
+        overallStackView.anchor(top: nil, leading: backgroundImage.leadingAnchor, bottom: nil, trailing: backgroundImage.trailingAnchor, padding: .init(top: 0, left: 50, bottom: 0, right: 50))
+        overallStackView.centerYAnchor.constraint(equalTo: scrollView.centerYAnchor).isActive = true
     }
     
+    //MARK:- OBSERVERS
     fileprivate func setupNotificationObservers() {
         NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardHide), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
+    //MARK:- KEYBOARD SHOW
+    
     @objc fileprivate func handleKeyboardShow(notification: Notification) {
         guard let value = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else {return }
         let keyboardFrame = value.cgRectValue
-        let bottomSpace = view.frame.height - stackView.frame.origin.y - stackView.frame.height
+        let bottomSpace = view.frame.height - scrollView.frame.origin.y - scrollView.frame.height
+        
         let difference = keyboardFrame.height - bottomSpace
         self.view.transform = CGAffineTransform(translationX: 0, y: -difference - 8)
+
+        scrollView.contentInset.top = keyboardFrame.height
+        
+        // automatically scroll to visible active text field
+        guard let activeTextField = activeTextField else { return }
+        let visibleRect = activeTextField.convert(activeTextField.bounds, to: scrollView)
+        scrollView.scrollRectToVisible(visibleRect, animated: true)
     }
     
+    //MARK:- KEYBOARD HIDE
     @objc fileprivate func handleKeyboardHide(notification: Notification){
         UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut
             , animations: {
                 self.view.transform = .identity
         })
+    }
+}
+
+//MARK:- SCROLLVIEW PROTOCOLS
+extension RegistrationViewController: UIScrollViewDelegate {
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        scrollView.contentOffset.x = 0
     }
 }
