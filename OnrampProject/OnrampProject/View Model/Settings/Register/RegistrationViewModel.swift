@@ -9,12 +9,16 @@ import UIKit
 
 class RegistrationViewModel {
     
-    //MARK:- PROPERTIES
+    //MARK:- BINDABLES
+    var bindableIsRegistering = Bindable<Bool>()
     var bindableImage = Bindable<UIImage>()
+    var bindableIsFromValid = Bindable<Bool>()
+    
+    //MARK:- PROPERTIES
     var fullName: String? { didSet{checkFormValidity()} }
     var email: String? { didSet{checkFormValidity()} }
     var password: String? { didSet{checkFormValidity()} }
-    var bindableIsFromValid = Bindable<Bool>()
+    
     
     fileprivate func checkFormValidity() {
         let isFormValid = fullName?.isEmpty == false && email?.isEmpty == false && password?.isEmpty == false

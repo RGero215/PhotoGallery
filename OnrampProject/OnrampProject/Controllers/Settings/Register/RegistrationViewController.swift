@@ -81,14 +81,14 @@ class RegistrationViewController: UIViewController {
         self.view.transform = .identity
     }
     
+    //MARK:- HANDLE REGISTER
     @objc fileprivate func handleRegister() {
         self.handleTapDismiss()
         print("Register User...")
         guard let email = registrationView.emailTextField.text else {return}
         guard let password = registrationView.passwordTextField.text else {return}
         
-        registeringHUD.textLabel.text = "Register"
-        registeringHUD.show(in: view)
+        registrationViewModel.bindableIsRegistering.value = true
         
         Auth.auth().createUser(withEmail: email, password: password) { (res, err) in
             if let err = err {
@@ -97,6 +97,28 @@ class RegistrationViewController: UIViewController {
                 return
             }
             print("Successfully register user: ", res?.user.uid ?? "")
+            
+            let filename = UUID().uuidString
+            let ref = Storage.storage().reference(withPath: "/images/\(filename)")
+            
+            let imageData = self.registrationViewModel.bindableImage.value?.jpegData(compressionQuality: 1) ?? Data()
+            
+            ref.putData(imageData, metadata: nil) { (_, err) in
+                if let err = err {
+                    self.showHUDWithError(error: err)
+                    return
+                }
+                
+                print("Finished uploading image to firebase storage")
+                ref.downloadURL { (url, err) in
+                    if let err = err {
+                        self.showHUDWithError(error: err)
+                        return
+                    }
+                    self.registrationViewModel.bindableIsRegistering.value = false
+                    print("Download image url: ", url?.absoluteString ?? "")
+                }
+            }
         }
     }
     
@@ -207,8 +229,18 @@ extension RegistrationViewController {
             self.registrationView.register.backgroundColor = isFormValid ? #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1) : .black
             self.registrationView.register.setTitleColor(isFormValid ? .black : #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1), for: .normal)
         }
+        
         registrationViewModel.bindableImage.bind { [unowned self] (image) in
             self.registrationView.selectPhotoButton.setImage(image?.withRenderingMode(.alwaysOriginal), for: .normal)
+        }
+        
+        registrationViewModel.bindableIsRegistering.bind { (isRegistering) in
+            if isRegistering == true {
+                self.registeringHUD.textLabel.text = "Register"
+                self.registeringHUD.show(in: self.view)
+            } else {
+                self.registeringHUD.dismiss()
+            }
         }
     }
     
