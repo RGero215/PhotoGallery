@@ -6,17 +6,14 @@
 //
 
 import UIKit
+import JGProgressHUD
 
 class BaseCollectionViewController: UICollectionViewController {
     
-    // MARK: -ACTIVITY INDICATIOR
-    let activityIndicatorView: UIActivityIndicatorView = {
-        let aiv = UIActivityIndicatorView(style: .large)
-        aiv.color = .black
-        aiv.startAnimating()
-        aiv.hidesWhenStopped = true
-        return aiv
-    }()
+    // MARK: - LOADING HUD PROPERTY
+    
+    let loadingHUD = JGProgressHUD(style: .dark)
+
     
     init() {
         super.init(collectionViewLayout: UICollectionViewFlowLayout())
@@ -33,7 +30,7 @@ class BaseCollectionViewController: UICollectionViewController {
                 UINavigationBar.appearance().compactAppearance = appearance
                 UINavigationBar.appearance().scrollEdgeAppearance = appearance
                 collectionView.backgroundColor = .white
-                activityIndicatorView.color = .black
+
             } else {
               //DARK
                 appearance.titleTextAttributes = [.foregroundColor: UIColor.white]
@@ -44,14 +41,14 @@ class BaseCollectionViewController: UICollectionViewController {
                 UINavigationBar.appearance().compactAppearance = appearance
                 UINavigationBar.appearance().scrollEdgeAppearance = appearance
                 collectionView.backgroundColor = .black
-                activityIndicatorView.color = .white
+
             }
                 
             } else {
                 UINavigationBar.appearance().tintColor = .white
                 UINavigationBar.appearance().isTranslucent = false
                 collectionView.backgroundColor = .white
-                activityIndicatorView.color = .black
+
             }
         }
     

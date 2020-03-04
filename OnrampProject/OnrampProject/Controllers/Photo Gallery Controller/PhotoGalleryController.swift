@@ -36,14 +36,14 @@ class PhotoGalleryController: BaseCollectionViewController {
     var photoFullScreenController: PhotoFullScreenController?
    
     //MARK: - LIFE CYCLE
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         collectionView.register(PhotoGalleryCell.self, forCellWithReuseIdentifier: cellId)
         
-        // Add Activity Indicator
-        view.addSubview(activityIndicatorView)
-        activityIndicatorView.fillSuperview()
+        loadingHUDIndicator()
+
         
     }
     
@@ -77,8 +77,8 @@ class PhotoGalleryController: BaseCollectionViewController {
         // Completion notification
         viewModel.dispatchGroup.notify(queue: .main) {
             print("Completed dispatch group task...")
-            // Stop Activity indicator
-            self.activityIndicatorView.stopAnimating()
+            // Stop HUD indicator
+            self.loadingHUD.dismiss()
             self.collectionView.reloadData()
         }
     }
@@ -193,5 +193,14 @@ extension PhotoGalleryController {
         alertController.addAction(cancelAction)
         
         present(alertController, animated: true)
+    }
+    
+    
+    //MARK:-  LOADING HUD Indicator
+    fileprivate func loadingHUDIndicator() {
+
+        loadingHUD.textLabel.text = LoadingArtwork.text
+        loadingHUD.detailTextLabel.text = LoadingArtwork.message
+        loadingHUD.show(in: self.view)
     }
 }
