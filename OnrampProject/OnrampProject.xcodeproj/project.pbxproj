@@ -28,6 +28,7 @@
 		8708DDE5240F461800A09254 /* RegistrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8708DDE4240F461800A09254 /* RegistrationView.swift */; };
 		8708DDE9240F7BD200A09254 /* RegistrationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8708DDE8240F7BD100A09254 /* RegistrationViewModel.swift */; };
 		8708DDEB240F886400A09254 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8708DDEA240F886400A09254 /* GoogleService-Info.plist */; };
+		8708DDED24101BCB00A09254 /* Bindable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8708DDEC24101BCB00A09254 /* Bindable.swift */; };
 		87407CB6240A7E10000ADF81 /* UIView+Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87407CB5240A7E10000ADF81 /* UIView+Layout.swift */; };
 		87407CB9240A7EF5000ADF81 /* PhotoGalleryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87407CB8240A7EF5000ADF81 /* PhotoGalleryController.swift */; };
 		87407CBC240A7FDE000ADF81 /* BaseCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87407CBB240A7FDE000ADF81 /* BaseCollectionViewController.swift */; };
@@ -97,6 +98,7 @@
 		8708DDE4240F461800A09254 /* RegistrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationView.swift; sourceTree = "<group>"; };
 		8708DDE8240F7BD100A09254 /* RegistrationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewModel.swift; sourceTree = "<group>"; };
 		8708DDEA240F886400A09254 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		8708DDEC24101BCB00A09254 /* Bindable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bindable.swift; sourceTree = "<group>"; };
 		87407CB5240A7E10000ADF81 /* UIView+Layout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Layout.swift"; sourceTree = "<group>"; };
 		87407CB8240A7EF5000ADF81 /* PhotoGalleryController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoGalleryController.swift; sourceTree = "<group>"; };
 		87407CBB240A7FDE000ADF81 /* BaseCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCollectionViewController.swift; sourceTree = "<group>"; };
@@ -370,6 +372,7 @@
 				8756833F240AF8F900F36E9E /* Extensions.swift */,
 				87568359240B453A00F36E9E /* VerticalStackView.swift */,
 				87568360240C1E7E00F36E9E /* BetterSnappingLayout.swift */,
+				8708DDEC24101BCB00A09254 /* Bindable.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -722,6 +725,7 @@
 				8708DDD6240EBFC800A09254 /* CaptureNarcosData.swift in Sources */,
 				87568352240B323000F36E9E /* PhotoFullScreenController.swift in Sources */,
 				87407CB6240A7E10000ADF81 /* UIView+Layout.swift in Sources */,
+				8708DDED24101BCB00A09254 /* Bindable.swift in Sources */,
 				8708DDDF240EDEE100A09254 /* LoginViewController.swift in Sources */,
 				6030FC7423FF0C79007F0901 /* RootViewController.swift in Sources */,
 				8756833D240AF2AF00F36E9E /* LightAndDarkMode.swift in Sources */,

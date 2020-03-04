@@ -141,12 +141,28 @@ extension RegistrationViewController: UIScrollViewDelegate {
     }
 }
 
+//MARK:- IMAGE PICKER PROTOCOLS
+extension RegistrationViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        let image = info[.originalImage] as? UIImage
+        registrationViewModel.image = image
+        
+        dismiss(animated: true, completion: nil)
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        dismiss(animated: true)
+    }
+}
+
 //MARK:- SETUP BUTTON ACTIONS
 extension RegistrationViewController {
     fileprivate func setupButtons() {
 
         registrationView.register.addTarget(self, action: #selector(handleRegister), for: .touchUpInside)
         registrationView.goToLoginButton.addTarget(self, action: #selector(handleGoToLogin), for: .touchUpInside)
+        registrationView.selectPhotoButton.addTarget(self, action: #selector(handleSelectPhoto), for: .touchUpInside)
     }
     
     fileprivate func setupTextfieldTarget() {
@@ -166,8 +182,12 @@ extension RegistrationViewController {
             registrationViewModel.password = textField.text
         }
 
-
-        
+    }
+    
+    @objc fileprivate func handleSelectPhoto() {
+        let imagePickerController = UIImagePickerController()
+        imagePickerController.delegate = self
+        present(imagePickerController, animated: true)
     }
     
     //MARK:- SETUP VIEW MODEL OBSERVER
@@ -177,6 +197,10 @@ extension RegistrationViewController {
             self.registrationView.register.isEnabled = isFormValid
             self.registrationView.register.backgroundColor = isFormValid ? #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1) : .black
             self.registrationView.register.setTitleColor(isFormValid ? .black : #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1), for: .normal)
+        }
+        
+        registrationViewModel.imageObserver = { [unowned self] image in
+            self.registrationView.selectPhotoButton.setImage(image?.withRenderingMode(.alwaysOriginal), for: .normal)
         }
     }
     

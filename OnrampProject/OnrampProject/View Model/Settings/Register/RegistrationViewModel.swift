@@ -10,6 +10,7 @@ import UIKit
 class RegistrationViewModel {
     
     //MARK:- PROPERTIES
+    var image: UIImage? { didSet {imageObserver?(image)} }
     var fullName: String? { didSet{checkFormValidity()} }
     var email: String? { didSet{checkFormValidity()} }
     var password: String? { didSet{checkFormValidity()} }
@@ -21,4 +22,5 @@ class RegistrationViewModel {
     
     //MARK:- REACTIVE PROGRAMMING
     var isFormValidObserver: ((Bool) -> ())?
+    var imageObserver: ((UIImage?) -> ())?
 }
