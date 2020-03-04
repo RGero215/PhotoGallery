@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import Firebase
+import JGProgressHUD
 
 class RegistrationViewController: UIViewController {
     //MARK:- REGISTRATION VIEW
@@ -77,7 +79,18 @@ class RegistrationViewController: UIViewController {
     }
     
     @objc fileprivate func handleRegister() {
-        
+        self.handleTapDismiss()
+        print("Register User...")
+        guard let email = registrationView.emailTextField.text else {return}
+        guard let password = registrationView.passwordTextField.text else {return}
+        Auth.auth().createUser(withEmail: email, password: password) { (res, err) in
+            if let err = err {
+                print("Failed to register user: ", err)
+                self.showHUDWithError(error: err)
+                return
+            }
+            print("Successfully register user: ", res?.user.uid ?? "")
+        }
     }
     
     @objc fileprivate func handleGoToLogin() {
@@ -165,5 +178,13 @@ extension RegistrationViewController {
             self.registrationView.register.backgroundColor = isFormValid ? #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1) : .black
             self.registrationView.register.setTitleColor(isFormValid ? .black : #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1), for: .normal)
         }
+    }
+    
+    //MARK:- HUD ERROR
+    fileprivate func showHUDWithError(error: Error) {
+        let hud = JGProgressHUD(style: .dark)
+        hud.detailTextLabel.text = error.localizedDescription
+        hud.show(in: self.view)
+        hud.dismiss(afterDelay: 4)
     }
 }

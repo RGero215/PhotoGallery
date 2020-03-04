@@ -27,6 +27,7 @@
 		8708DDE1240F026D00A09254 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8708DDE0240F026D00A09254 /* CustomTextField.swift */; };
 		8708DDE5240F461800A09254 /* RegistrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8708DDE4240F461800A09254 /* RegistrationView.swift */; };
 		8708DDE9240F7BD200A09254 /* RegistrationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8708DDE8240F7BD100A09254 /* RegistrationViewModel.swift */; };
+		8708DDEB240F886400A09254 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8708DDEA240F886400A09254 /* GoogleService-Info.plist */; };
 		87407CB6240A7E10000ADF81 /* UIView+Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87407CB5240A7E10000ADF81 /* UIView+Layout.swift */; };
 		87407CB9240A7EF5000ADF81 /* PhotoGalleryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87407CB8240A7EF5000ADF81 /* PhotoGalleryController.swift */; };
 		87407CBC240A7FDE000ADF81 /* BaseCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87407CBB240A7FDE000ADF81 /* BaseCollectionViewController.swift */; };
@@ -95,6 +96,7 @@
 		8708DDE0240F026D00A09254 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		8708DDE4240F461800A09254 /* RegistrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationView.swift; sourceTree = "<group>"; };
 		8708DDE8240F7BD100A09254 /* RegistrationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewModel.swift; sourceTree = "<group>"; };
+		8708DDEA240F886400A09254 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		87407CB5240A7E10000ADF81 /* UIView+Layout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Layout.swift"; sourceTree = "<group>"; };
 		87407CB8240A7EF5000ADF81 /* PhotoGalleryController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoGalleryController.swift; sourceTree = "<group>"; };
 		87407CBB240A7FDE000ADF81 /* BaseCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCollectionViewController.swift; sourceTree = "<group>"; };
@@ -355,6 +357,7 @@
 			isa = PBXGroup;
 			children = (
 				6030FC7D23FF0C7A007F0901 /* Info.plist */,
+				8708DDEA240F886400A09254 /* GoogleService-Info.plist */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
@@ -576,6 +579,7 @@
 				8756836D240C6A0E00F36E9E /* art.scnassets in Resources */,
 				6030FC7923FF0C7A007F0901 /* Assets.xcassets in Resources */,
 				6030FC7723FF0C79007F0901 /* Main.storyboard in Resources */,
+				8708DDEB240F886400A09254 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
