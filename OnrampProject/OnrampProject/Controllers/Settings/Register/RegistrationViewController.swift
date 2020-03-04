@@ -10,6 +10,8 @@ import UIKit
 class RegistrationViewController: UIViewController {
     //MARK:- REGISTRATION VIEW
     var registrationView = RegistrationView()
+    //MARK:- REGISTRATION VIEW MODEL
+    let registrationViewModel = RegistrationViewModel()
     
     //MARK:- LOAD VIEWS
     override func loadView() {
@@ -27,6 +29,9 @@ class RegistrationViewController: UIViewController {
         setupTapGesture()
         setupButtons()
         registrationView.scrollView.delegate = self
+        setupRegistrationViewModelObserver()
+        setupTextfieldTarget()
+        
         
     }
     
@@ -40,6 +45,8 @@ class RegistrationViewController: UIViewController {
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         registrationView.scrollView.contentSize = view.frame.size
+        registrationView.scrollView.layoutIfNeeded()
+
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
@@ -127,5 +134,36 @@ extension RegistrationViewController {
 
         registrationView.register.addTarget(self, action: #selector(handleRegister), for: .touchUpInside)
         registrationView.goToLoginButton.addTarget(self, action: #selector(handleGoToLogin), for: .touchUpInside)
+    }
+    
+    fileprivate func setupTextfieldTarget() {
+        registrationView.fullNameTextField.addTarget(self, action: #selector(handleTextChange(textField:)), for: .editingChanged)
+        registrationView.emailTextField.addTarget(self, action: #selector(handleTextChange(textField:)), for: .editingChanged)
+        registrationView.passwordTextField.addTarget(self, action: #selector(handleTextChange(textField:)), for: .editingChanged)
+        
+    }
+    
+    @objc fileprivate func handleTextChange(textField: UITextField) {
+        switch textField {
+        case registrationView.fullNameTextField:
+            registrationViewModel.fullName = textField.text
+        case registrationView.emailTextField:
+            registrationViewModel.email = textField.text
+        default:
+            registrationViewModel.password = textField.text
+        }
+
+
+        
+    }
+    
+    //MARK:- SETUP VIEW MODEL OBSERVER
+    fileprivate func setupRegistrationViewModelObserver() {
+        registrationViewModel.isFormValidObserver = { [unowned self] (isFormValid) in
+            
+            self.registrationView.register.isEnabled = isFormValid
+            self.registrationView.register.backgroundColor = isFormValid ? #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1) : .black
+            self.registrationView.register.setTitleColor(isFormValid ? .black : #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1), for: .normal)
+        }
     }
 }

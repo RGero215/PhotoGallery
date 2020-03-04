@@ -26,3 +26,8 @@ enum RegistrationPlaceHolder {
     static let email = "Enter Email"
     static let password = "Enter Password"
 }
+
+enum FetchingError {
+    static let title = "Unable to Fetch Artwork"
+    static let message = "The application is unable to fetch artwork data. Please make sure your device is connected over Wi-Fi or cellular."
+}

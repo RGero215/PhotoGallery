@@ -185,8 +185,8 @@ extension PhotoGalleryController {
         
         switch alertType {
         case .noArtworkAvailable:
-            title = "Unable to Fetch Artwork"
-            message = "The application is unable to fetch artwork data. Please make sure your device is connected over Wi-Fi or cellular."
+            title = FetchingError.title
+            message = FetchingError.message
         }
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let cancelAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
