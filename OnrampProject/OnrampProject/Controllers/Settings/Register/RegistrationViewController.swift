@@ -146,7 +146,7 @@ extension RegistrationViewController: UIImagePickerControllerDelegate, UINavigat
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         let image = info[.originalImage] as? UIImage
-        registrationViewModel.image = image
+        registrationViewModel.bindableImage.value = image
         
         dismiss(animated: true, completion: nil)
     }
@@ -192,14 +192,15 @@ extension RegistrationViewController {
     
     //MARK:- SETUP VIEW MODEL OBSERVER
     fileprivate func setupRegistrationViewModelObserver() {
-        registrationViewModel.isFormValidObserver = { [unowned self] (isFormValid) in
+        registrationViewModel.bindableIsFromValid.bind  { [unowned self] (isFormValid) in
+            
+            guard let isFormValid = isFormValid else {return}
             
             self.registrationView.register.isEnabled = isFormValid
             self.registrationView.register.backgroundColor = isFormValid ? #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1) : .black
             self.registrationView.register.setTitleColor(isFormValid ? .black : #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1), for: .normal)
         }
-        
-        registrationViewModel.imageObserver = { [unowned self] image in
+        registrationViewModel.bindableImage.bind { [unowned self] (image) in
             self.registrationView.selectPhotoButton.setImage(image?.withRenderingMode(.alwaysOriginal), for: .normal)
         }
     }
