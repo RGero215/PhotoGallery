@@ -11,7 +11,12 @@ class PhotoGalleryCell: UICollectionViewCell {
     
     //MARK:- COMPONENTS PROPERTIES
    
-    let titleLabel = UILabel(text: "Photo Title", font: .boldSystemFont(ofSize: 30))
+    let titleLabel: HeaderLabel = {
+        let label = HeaderLabel()
+        label.text = "Chapter"
+        label.font = UIFont.boldSystemFont(ofSize: 32)
+        return label
+    }()
     
     //MARK: - HORIZONTAL CONTROLLER
     

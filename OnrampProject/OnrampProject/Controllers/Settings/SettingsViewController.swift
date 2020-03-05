@@ -10,6 +10,10 @@ import Firebase
 
 class SettingsViewController: UITableViewController {
     
+    //MARK:- PROPERTIES
+    let cellId = "cellId"
+    var user: User?
+    
     //MARK:- UI COMPONENT
     lazy var imageButton: UIButton = {
         let button = UIButton(type: .system)
@@ -35,6 +39,7 @@ class SettingsViewController: UITableViewController {
         super.viewDidLoad()
         setupNavItems()
         fetchUsersFromFirestore()
+        tableView.register(SettingsCell.self, forCellReuseIdentifier: cellId)
         tableView.backgroundColor = UIColor(white: 0.95, alpha: 1)
         tableView.tableFooterView = UIView()
         setupLightAndDarkMode()
@@ -65,7 +70,9 @@ class SettingsViewController: UITableViewController {
         if section == 0 {
             return header
         }
-        let headerLabel = UILabel(text: "name", font: UIFont.boldSystemFont(ofSize: 24))
+        let headerLabel = HeaderLabel()
+        headerLabel.text = "Full Name"
+        headerLabel.font = UIFont.boldSystemFont(ofSize: 24)
         return headerLabel
         
     }
@@ -79,6 +86,16 @@ class SettingsViewController: UITableViewController {
     
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 5
+    }
+    
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return section == 0 ? 0 : 1
+    }
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! SettingsCell
+        cell.textField.text = user?.fullName
+        return cell
     }
 }
 
@@ -117,7 +134,7 @@ extension SettingsViewController {
             snapshot?.documents.forEach({ (documentSnapshot) in
                 let userDictionary = documentSnapshot.data()
                 let user = User(dictionary: userDictionary)
-                print(user)
+                self.user = user
             })
         }
     }
@@ -184,4 +201,11 @@ extension SettingsViewController {
 class CustomImagePickerController: UIImagePickerController {
     
     var imageButton: UIButton?
+}
+
+//MARK:- HEADER LABEL CLASS
+class HeaderLabel: UILabel {
+    override func drawText(in rect: CGRect) {
+        super.drawText(in: rect.insetBy(dx: 16, dy: 0))
+    }
 }
