@@ -49,12 +49,6 @@ class SettingsViewController: UITableViewController {
         
     }
     
-    //MARK:- HANDLE SELECT BUTTON
-    @objc fileprivate func handleSelectPhoto() {
-        let imagePicker = UIImagePickerController()
-        present(imagePicker, animated: true)
-    }
-    
     //MARK:- TABLEVIEW
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let header = UIView()
@@ -71,6 +65,27 @@ class SettingsViewController: UITableViewController {
 }
 
 //MARK:- EXTENSION
+
+extension SettingsViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
+    //MARK:- HANDLE SELECT BUTTON
+    @objc fileprivate func handleSelectPhoto(button: UIButton) {
+        let imagePicker = CustomImagePickerController()
+        imagePicker.delegate = self
+        imagePicker.imageButton = button
+        present(imagePicker, animated: true)
+    }
+    
+    //MARK:- IMAGE PICKER
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        let selectedImage = info[.originalImage] as? UIImage
+        let imageButton = (picker as? CustomImagePickerController)?.imageButton
+        imageButton?.setImage(selectedImage?.withRenderingMode(.alwaysOriginal), for: .normal)
+        dismiss(animated: true, completion: nil)
+    }
+
+    
+}
 
 extension SettingsViewController {
     
@@ -89,4 +104,10 @@ extension SettingsViewController {
         }
     }
     
+}
+
+//MARK:- CUSTOM IMAGE PICKER CONTROLLER
+class CustomImagePickerController: UIImagePickerController {
+    
+    var imageButton: UIButton?
 }
