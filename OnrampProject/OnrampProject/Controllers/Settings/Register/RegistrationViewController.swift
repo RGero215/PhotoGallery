@@ -37,7 +37,6 @@ class RegistrationViewController: UIViewController {
         setupRegistrationViewModelObserver()
         setupTextfieldTarget()
         
-        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -58,9 +57,15 @@ class RegistrationViewController: UIViewController {
         if UIDevice.current.orientation.isLandscape {
             handleTapDismiss()
             registrationView.overallStackView.axis = .horizontal
+            registrationView.verticalStackView.distribution = .fillEqually
+            registrationView.selectPhotoButtonHeightAnchor.isActive = false
+            registrationView.selectPhotoButtonWidthAnchor.isActive = true
         } else {
             handleTapDismiss()
             registrationView.overallStackView.axis = .vertical
+            registrationView.verticalStackView.distribution = .fill
+            registrationView.selectPhotoButtonWidthAnchor.isActive = false
+            registrationView.selectPhotoButtonHeightAnchor.isActive = true
         }
     }
     

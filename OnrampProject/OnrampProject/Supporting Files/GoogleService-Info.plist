@@ -3,21 +3,21 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>782045058138-f83kut3a8bf3ut40phtem9eqamp6tqi0.apps.googleusercontent.com</string>
+	<string>505774828167-v5co3vmfvpc9f7479bbgi5i32mln5ak5.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.782045058138-f83kut3a8bf3ut40phtem9eqamp6tqi0</string>
+	<string>com.googleusercontent.apps.505774828167-v5co3vmfvpc9f7479bbgi5i32mln5ak5</string>
 	<key>API_KEY</key>
-	<string>AIzaSyDGdbEOAtmmmYGdYVWs5afT7gSpjX87miM</string>
+	<string>AIzaSyCC-WfzlaRSN0g_PB_02thv7L-nEZta8Jc</string>
 	<key>GCM_SENDER_ID</key>
-	<string>782045058138</string>
+	<string>505774828167</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
 	<string>com.geronimo.ramon.OnrampProject</string>
 	<key>PROJECT_ID</key>
-	<string>photogallery-8bafc</string>
+	<string>photogallery-10758</string>
 	<key>STORAGE_BUCKET</key>
-	<string>photogallery-8bafc.appspot.com</string>
+	<string>photogallery-10758.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -29,8 +29,8 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:782045058138:ios:7ce73f72a41d9ac53db463</string>
+	<string>1:505774828167:ios:07907195a7e8114d6da622</string>
 	<key>DATABASE_URL</key>
-	<string>https://photogallery-8bafc.firebaseio.com</string>
+	<string>https://photogallery-10758.firebaseio.com</string>
 </dict>
 </plist>

@@ -22,7 +22,6 @@ class RegistrationView: UIView  {
     
     lazy var verticalStackView: VerticalStackView = {
         let stackView = VerticalStackView(arrangedSubviews: [fullNameTextField, emailTextField, passwordTextField, register])
-        stackView.distribution = .fillEqually
         stackView.spacing = 8
         return stackView
     }()
@@ -42,12 +41,15 @@ class RegistrationView: UIView  {
         button.titleLabel?.font = UIFont.systemFont(ofSize: 32, weight: .heavy)
         button.backgroundColor = #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1)
         button.setTitleColor(.black, for: .normal)
-        button.heightAnchor.constraint(equalToConstant: 275).isActive = true
         button.layer.cornerRadius = 16
+        button.heightAnchor.constraint(equalToConstant: 275).isActive = true
         button.imageView?.contentMode = .scaleAspectFill
         button.clipsToBounds = true
         return button
     }()
+    
+    lazy var selectPhotoButtonWidthAnchor = selectPhotoButton.widthAnchor.constraint(equalToConstant: 275)
+    lazy var selectPhotoButtonHeightAnchor = selectPhotoButton.heightAnchor.constraint(equalToConstant: 275)
     
     let fullNameTextField: CustomTexField = {
         let textField = CustomTexField(padding: 24)
@@ -108,9 +110,9 @@ class RegistrationView: UIView  {
         scrollView.addSubview(overallStackView)
         overallStackView.spacing = 8
         overallStackView.axis = .vertical
-        selectPhotoButton.widthAnchor.constraint(equalToConstant: 275).isActive = true
         overallStackView.anchor(top: nil, leading: backgroundImage.leadingAnchor, bottom: nil, trailing: backgroundImage.trailingAnchor, padding: .init(top: 0, left: 50, bottom: 0, right: 50))
         overallStackView.centerYAnchor.constraint(equalTo: scrollView.centerYAnchor).isActive = true
+        
     }
     
     required init?(coder: NSCoder) {

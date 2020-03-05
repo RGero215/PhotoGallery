@@ -53,6 +53,7 @@ class PhotoGalleryController: BaseCollectionViewController {
         self.tabBarController?.tabBar.isHidden = false
     }
     
+    
     //MARK:- SETUP VIEW MODEL
     private func setupViewModel(with viewModel: PhotoViewModel) {
         viewModel.didFetchChaptersData = { [weak self] (chapters, error) in
@@ -85,6 +86,8 @@ class PhotoGalleryController: BaseCollectionViewController {
     
 }
 
+
+//MARK:- COLLECTION VIEW DELEGATE FLOWLAYOUT
 extension PhotoGalleryController: UICollectionViewDelegateFlowLayout {
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return chapters.count
