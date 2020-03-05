@@ -20,6 +20,15 @@ class SettingsViewController: UITableViewController {
         return button
     }()
     
+    //MARK:- HEADER
+    lazy var header: UIView = {
+        let header = UIView()
+        header.backgroundColor = .blue
+        header.addSubview(imageButton)
+        imageButton.fillSuperview()
+        return header
+    }()
+    
     
     //MARK:- LIFE CYCLE
     override func viewDidLoad() {
@@ -28,6 +37,7 @@ class SettingsViewController: UITableViewController {
         fetchUsersFromFirestore()
         tableView.backgroundColor = UIColor(white: 0.95, alpha: 1)
         tableView.tableFooterView = UIView()
+        setupLightAndDarkMode()
     }
     
     //MARK:- FILEPRIVATE METHODS
@@ -52,16 +62,23 @@ class SettingsViewController: UITableViewController {
     
     //MARK:- TABLEVIEW
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let header = UIView()
-        header.backgroundColor = .blue
-        header.addSubview(imageButton)
-        imageButton.fillSuperview()
+        if section == 0 {
+            return header
+        }
+        let headerLabel = UILabel(text: "name", font: UIFont.boldSystemFont(ofSize: 24))
+        return headerLabel
         
-        return header
     }
     
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return view.frame.width
+        if section == 0 {
+            return view.frame.width
+        }
+        return 40
+    }
+    
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        return 5
     }
 }
 
@@ -105,6 +122,62 @@ extension SettingsViewController {
         }
     }
     
+    fileprivate func setupLightAndDarkMode() {
+        if #available(iOS 12.0, *) {
+        let appearance = UINavigationBarAppearance()
+        if traitCollection.userInterfaceStyle == .light {
+         //Light mode
+            appearance.titleTextAttributes = [.foregroundColor: UIColor.black]
+            appearance.largeTitleTextAttributes = [.foregroundColor: UIColor.black]
+
+            UINavigationBar.appearance().tintColor = .white
+            UINavigationBar.appearance().standardAppearance = appearance
+            UINavigationBar.appearance().compactAppearance = appearance
+            UINavigationBar.appearance().scrollEdgeAppearance = appearance
+            self.tableView.backgroundView = UIView() //Create a backgroundView
+            self.tableView.backgroundView!.backgroundColor = UIColor(white: 0.95, alpha: 1)
+
+        } else {
+          //DARK
+            appearance.titleTextAttributes = [.foregroundColor: UIColor.white]
+            appearance.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
+
+            UINavigationBar.appearance().tintColor = .white
+            UINavigationBar.appearance().standardAppearance = appearance
+            UINavigationBar.appearance().compactAppearance = appearance
+            UINavigationBar.appearance().scrollEdgeAppearance = appearance
+            self.tableView.backgroundView = UIView() //Create a backgroundView
+            self.tableView.backgroundView!.backgroundColor = UIColor(red: 47/255.0 , green: 49/255.0 , blue: 52/255.0 , alpha: 1) //choose your background color
+
+        }
+            
+        } else {
+            UINavigationBar.appearance().tintColor = .white
+            UINavigationBar.appearance().isTranslucent = false
+            self.tableView.backgroundView = UIView() //Create a backgroundView
+            self.tableView.backgroundView!.backgroundColor = UIColor(white: 0.95, alpha: 1)
+
+        }
+    }
+    
+    //MARK:- CELL TEXT COLOR
+    fileprivate func setupTextColor(cell: SettingsCell) {
+        if #available(iOS 12.0, *) {
+            if traitCollection.userInterfaceStyle == .light {
+                //Light mode
+                cell.textField.attributedPlaceholder = NSAttributedString(string: "placeholder text", attributes: [NSAttributedString.Key.foregroundColor: UIColor.gray])
+                cell.textField.textColor = .black
+            } else {
+                //DARK
+                cell.textField.attributedPlaceholder = NSAttributedString(string: "placeholder text", attributes: [NSAttributedString.Key.foregroundColor: UIColor.gray])
+                cell.textField.textColor = .white
+            }
+        } else {
+            // Fallback on earlier versions
+            cell.textField.attributedPlaceholder = NSAttributedString(string: "placeholder text", attributes: [NSAttributedString.Key.foregroundColor: UIColor.gray])
+            cell.textField.textColor = .black
+        }
+    }
 }
 
 //MARK:- CUSTOM IMAGE PICKER CONTROLLER
