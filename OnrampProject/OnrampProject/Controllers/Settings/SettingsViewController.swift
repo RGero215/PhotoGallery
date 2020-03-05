@@ -42,6 +42,7 @@ class SettingsViewController: UITableViewController {
         tableView.register(SettingsCell.self, forCellReuseIdentifier: cellId)
         tableView.backgroundColor = UIColor(white: 0.95, alpha: 1)
         tableView.tableFooterView = UIView()
+        tableView.keyboardDismissMode = .interactive
         setupLightAndDarkMode()
     }
     
@@ -68,10 +69,23 @@ class SettingsViewController: UITableViewController {
     //MARK:- TABLEVIEW
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         if section == 0 {
+            
             return header
         }
         let headerLabel = HeaderLabel()
-        headerLabel.text = "Full Name"
+        switch section {
+        case 1:
+            headerLabel.text = "Full Name"
+        case 2:
+            headerLabel.text = "Capture Narcos Website"
+        case 3:
+            headerLabel.text = "Store Website"
+        case 4:
+            headerLabel.text = "Artist Name"
+        default:
+            headerLabel.text = "Notify Me"
+        }
+        
         headerLabel.font = UIFont.boldSystemFont(ofSize: 24)
         return headerLabel
         
@@ -85,7 +99,7 @@ class SettingsViewController: UITableViewController {
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 5
+        return 6
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -94,8 +108,42 @@ class SettingsViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! SettingsCell
-        cell.textField.text = user?.fullName
+        
+        switch indexPath.section {
+        case 1:
+            cell.textField.text = user?.fullName
+            cell.textField.placeholder = "Enter Full Name"
+        case 2:
+            cell.textField.text = "http://www.capturenarcos.com/"
+            cell.textField.isEnabled = false
+        case 3:
+            cell.textField.text = "http://capturenarcos.myshopify.com/"
+            cell.textField.isEnabled = false
+        case 4:
+            cell.textField.text = "Ramon Geronimo"
+            cell.textField.isEnabled = false
+        default:
+            cell.textField.text = "Book | Game Available "
+            cell.textField.isEnabled = false
+        }
+
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        switch indexPath.section {
+        case 2:
+            guard let url = URL(string: "http://www.capturenarcos.com/") else { return  }
+            print("URL: ", url)
+            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+        case 3:
+            guard let url = URL(string: "http://capturenarcos.myshopify.com/") else { return  }
+            print("URL: ", url)
+            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+        default:
+            return
+        }
+       
     }
 }
 
