@@ -218,6 +218,7 @@ extension RegistrationViewController {
                 self.registeringHUD.show(in: self.view)
             } else {
                 self.registeringHUD.dismiss()
+
             }
         }
     }

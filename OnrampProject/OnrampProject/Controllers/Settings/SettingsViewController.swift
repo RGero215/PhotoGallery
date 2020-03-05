@@ -7,6 +7,8 @@
 
 import UIKit
 import Firebase
+import JGProgressHUD
+import SDWebImage
 
 class SettingsViewController: UITableViewController {
     
@@ -38,7 +40,7 @@ class SettingsViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNavItems()
-        fetchUsersFromFirestore()
+        fetchUserFromFirestore()
         tableView.register(SettingsCell.self, forCellReuseIdentifier: cellId)
         tableView.backgroundColor = UIColor(white: 0.95, alpha: 1)
         tableView.tableFooterView = UIView()
@@ -173,17 +175,17 @@ extension SettingsViewController: UIImagePickerControllerDelegate, UINavigationC
 extension SettingsViewController {
     
     //MARK:- FETCHING FROM FIRESTORE
-    fileprivate func fetchUsersFromFirestore() {
-        Firestore.firestore().collection("users").getDocuments { (snapshot, err) in
+    fileprivate func fetchUserFromFirestore() {
+        guard let uid = Auth.auth().currentUser?.uid else {return}
+        Firestore.firestore().collection("users").document(uid).getDocument { (snapshot, err) in
             if let err = err {
                 print("Failed to fetch users: ", err)
                 return
             }
-            snapshot?.documents.forEach({ (documentSnapshot) in
-                let userDictionary = documentSnapshot.data()
-                let user = User(dictionary: userDictionary)
-                self.user = user
-            })
+            guard let dictionary = snapshot?.data() else {return}
+            let user = User(dictionary: dictionary)
+            print("User: ", user)
+            self.user = user
         }
     }
     
