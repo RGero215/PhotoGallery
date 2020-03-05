@@ -15,6 +15,7 @@ class SettingsViewController: UITableViewController {
         let button = UIButton(type: .system)
         button.setTitle("Select Photo", for: .normal)
         button.backgroundColor = .red
+        button.addTarget(self, action: #selector(handleSelectPhoto), for: .touchUpInside)
         return button
     }()
     
@@ -46,6 +47,12 @@ class SettingsViewController: UITableViewController {
     //MARK:- HANDLE SAVE
     @objc fileprivate func handleSave() {
         
+    }
+    
+    //MARK:- HANDLE SELECT BUTTON
+    @objc fileprivate func handleSelectPhoto() {
+        let imagePicker = UIImagePickerController()
+        present(imagePicker, animated: true)
     }
     
     //MARK:- TABLEVIEW
