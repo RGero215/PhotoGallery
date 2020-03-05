@@ -65,10 +65,23 @@ class SettingsViewController: UITableViewController {
     
     //MARK:- HANDLE SAVE
     @objc fileprivate func handleSave() {
-        
+        guard let uid = Auth.auth().currentUser?.uid else {return}
+        let docData = [
+            "uid": uid,
+            "fullName": user?.fullName ?? "",
+            "imageUrl": user?.imageUrl ?? "",
+            "notifyMe": true
+            ] as [String : Any]
+        Firestore.firestore().collection("users").document(uid).setData(docData) { (err) in
+            if let err = err {
+                print("Failed to save user settings: ", err)
+                return
+            }
+            print("Finished saving user info")
+        }
     }
     
-    //MARK:- TABLEVIEW
+    //MARK:- VIEW FOR HEADER
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         if section == 0 {
             
@@ -95,6 +108,7 @@ class SettingsViewController: UITableViewController {
         
     }
     
+    //MARK:- HEIGHT FOR HEADER
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if section == 0 {
             return view.frame.width
@@ -102,14 +116,17 @@ class SettingsViewController: UITableViewController {
         return 40
     }
     
+    //MARK:- NUMBER OF SECTONS
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 7
     }
     
+    //MARK:- NUMBER OF ROW IN SECTION
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return section == 0 ? 0 : 1
     }
     
+    //MARK:- CELL FOR ROW
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! SettingsCell
         
@@ -117,6 +134,7 @@ class SettingsViewController: UITableViewController {
         case 1:
             cell.textField.text = user?.fullName
             cell.textField.placeholder = "Enter Full Name"
+            cell.textField.addTarget(self, action: #selector(handleNameChange), for: .editingChanged)
         case 2:
             if let email = Auth.auth().currentUser?.email {
                 cell.textField.text = email
@@ -134,11 +152,13 @@ class SettingsViewController: UITableViewController {
         default:
             cell.textField.text = "Book | Game Available "
             cell.textField.isEnabled = false
+            cell.textField.addTarget(self, action: #selector(handleNotifyMe), for: .editingChanged)
         }
 
         return cell
     }
     
+    //MARK:- DID SELECT ROW
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch indexPath.section {
         case 3:
@@ -180,6 +200,16 @@ extension SettingsViewController: UIImagePickerControllerDelegate, UINavigationC
 }
 
 extension SettingsViewController {
+    
+    //MARK:- HANDLE NAME CHANGE
+    @objc fileprivate func handleNameChange(textField: UITextField) {
+        
+    }
+    
+    //MARK:- HANDLE NAME CHANGE
+    @objc fileprivate func handleNotifyMe(textField: UITextField) {
+        
+    }
     
     //MARK:- FETCHING FROM FIRESTORE
     fileprivate func fetchUserFromFirestore() {
