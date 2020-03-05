@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Firebase
 
 class SettingsViewController: UIViewController {
     
@@ -14,6 +15,7 @@ class SettingsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNavItems()
+        fetchUsersFromFirestore()
     }
     
     //MARK:- FILEPRIVATE METHODS
@@ -35,4 +37,24 @@ class SettingsViewController: UIViewController {
     @objc fileprivate func handleSave() {
         
     }
+}
+
+//MARK:- EXTENSION
+extension SettingsViewController {
+    
+    //MARK:- FETCHING FROM FIRESTORE
+    fileprivate func fetchUsersFromFirestore() {
+        Firestore.firestore().collection("users").getDocuments { (snapshot, err) in
+            if let err = err {
+                print("Failed to fetch users: ", err)
+                return
+            }
+            snapshot?.documents.forEach({ (documentSnapshot) in
+                let userDictionary = documentSnapshot.data()
+                let user = User(dictionary: userDictionary)
+                print(user)
+            })
+        }
+    }
+    
 }
