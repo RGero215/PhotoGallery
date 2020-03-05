@@ -79,10 +79,12 @@ class SettingsViewController: UITableViewController {
         case 1:
             headerLabel.text = "Full Name"
         case 2:
-            headerLabel.text = "Capture Narcos Website"
+            headerLabel.text = "Email"
         case 3:
-            headerLabel.text = "Store Website"
+            headerLabel.text = "Capture Narcos Website"
         case 4:
+            headerLabel.text = "Store Website"
+        case 5:
             headerLabel.text = "Artist Name"
         default:
             headerLabel.text = "Notify Me"
@@ -101,7 +103,7 @@ class SettingsViewController: UITableViewController {
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 6
+        return 7
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -116,12 +118,17 @@ class SettingsViewController: UITableViewController {
             cell.textField.text = user?.fullName
             cell.textField.placeholder = "Enter Full Name"
         case 2:
+            if let email = Auth.auth().currentUser?.email {
+                cell.textField.text = email
+                cell.textField.isEnabled = false
+            }
+        case 3:
             cell.textField.text = "http://www.capturenarcos.com/"
             cell.textField.isEnabled = false
-        case 3:
+        case 4:
             cell.textField.text = "http://capturenarcos.myshopify.com/"
             cell.textField.isEnabled = false
-        case 4:
+        case 5:
             cell.textField.text = "Ramon Geronimo"
             cell.textField.isEnabled = false
         default:
@@ -134,11 +141,11 @@ class SettingsViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch indexPath.section {
-        case 2:
+        case 3:
             guard let url = URL(string: "http://www.capturenarcos.com/") else { return  }
             print("URL: ", url)
             UIApplication.shared.open(url, options: [:], completionHandler: nil)
-        case 3:
+        case 4:
             guard let url = URL(string: "http://capturenarcos.myshopify.com/") else { return  }
             print("URL: ", url)
             UIApplication.shared.open(url, options: [:], completionHandler: nil)
@@ -186,6 +193,18 @@ extension SettingsViewController {
             let user = User(dictionary: dictionary)
             print("User: ", user)
             self.user = user
+            
+            self.loadUserPhoto()
+            
+            self.tableView.reloadData()
+        }
+    }
+    
+    //MARK:- LOAD USER PHOTO
+    fileprivate func loadUserPhoto() {
+        guard let imageUrl = user?.imageUrl, let url = URL(string: imageUrl) else {return}
+        SDWebImageManager.shared.loadImage(with: url, options: .continueInBackground, progress: nil) { (image, _, _, _, _, _) in
+            self.imageButton.setImage(image?.withRenderingMode(.alwaysOriginal), for: .normal)
         }
     }
     
