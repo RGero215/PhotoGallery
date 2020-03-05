@@ -8,7 +8,7 @@
 import UIKit
 import Firebase
 
-class SettingsViewController: UIViewController {
+class SettingsViewController: UITableViewController {
     
     
     //MARK:- LIFE CYCLE
@@ -16,6 +16,8 @@ class SettingsViewController: UIViewController {
         super.viewDidLoad()
         setupNavItems()
         fetchUsersFromFirestore()
+        tableView.backgroundColor = UIColor(white: 0.95, alpha: 1)
+        tableView.tableFooterView = UIView()
     }
     
     //MARK:- FILEPRIVATE METHODS
@@ -37,9 +39,21 @@ class SettingsViewController: UIViewController {
     @objc fileprivate func handleSave() {
         
     }
+    
+    //MARK:- TABLEVIEW
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let header = UIView()
+        header.backgroundColor = .blue
+        return header
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return view.frame.width
+    }
 }
 
 //MARK:- EXTENSION
+
 extension SettingsViewController {
     
     //MARK:- FETCHING FROM FIRESTORE
@@ -56,5 +70,8 @@ extension SettingsViewController {
             })
         }
     }
+    
+    
+    
     
 }
