@@ -10,6 +10,14 @@ import Firebase
 
 class SettingsViewController: UITableViewController {
     
+    //MARK:- UI COMPONENT
+    lazy var imageButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("Select Photo", for: .normal)
+        button.backgroundColor = .red
+        return button
+    }()
+    
     
     //MARK:- LIFE CYCLE
     override func viewDidLoad() {
@@ -44,6 +52,9 @@ class SettingsViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let header = UIView()
         header.backgroundColor = .blue
+        header.addSubview(imageButton)
+        imageButton.fillSuperview()
+        
         return header
     }
     
@@ -70,8 +81,5 @@ extension SettingsViewController {
             })
         }
     }
-    
-    
-    
     
 }
