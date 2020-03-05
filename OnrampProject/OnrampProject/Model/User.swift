@@ -9,9 +9,9 @@ import Foundation
 
 struct User {
     let uid: String
-    let fullName: String
-    let imageUrl: String
-    let notifyMe: Bool
+    var fullName: String
+    var imageUrl: String
+    var notifyMe: Bool
     
     
     init(dictionary: [String: Any]) {

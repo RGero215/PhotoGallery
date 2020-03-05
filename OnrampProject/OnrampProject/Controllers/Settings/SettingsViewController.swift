@@ -70,9 +70,13 @@ class SettingsViewController: UITableViewController {
             "uid": uid,
             "fullName": user?.fullName ?? "",
             "imageUrl": user?.imageUrl ?? "",
-            "notifyMe": true
+            "notifyMe": user?.notifyMe ?? false
             ] as [String : Any]
+        let hud = JGProgressHUD(style: .dark)
+        hud.textLabel.text = "Saving Settings"
+        hud.show(in: view)
         Firestore.firestore().collection("users").document(uid).setData(docData) { (err) in
+            hud.dismiss()
             if let err = err {
                 print("Failed to save user settings: ", err)
                 return
@@ -203,7 +207,7 @@ extension SettingsViewController {
     
     //MARK:- HANDLE NAME CHANGE
     @objc fileprivate func handleNameChange(textField: UITextField) {
-        
+        self.user?.fullName = textField.text ?? ""
     }
     
     //MARK:- HANDLE NAME CHANGE
