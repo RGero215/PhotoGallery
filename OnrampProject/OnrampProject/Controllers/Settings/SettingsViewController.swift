@@ -135,6 +135,7 @@ class SettingsViewController: UITableViewController {
         
         if indexPath.section == 6 {
             let notifyMeCell = NotifyMeCell(style: .default, reuseIdentifier: nil)
+            handleLightOrDarkMode(notifyMeCell: notifyMeCell)
             return notifyMeCell
         }
         
@@ -274,34 +275,62 @@ extension SettingsViewController {
         }
     }
     
+    //MARK:- HANDLE NOTIFI ME LIGTH/DARK
+    fileprivate func handleLightOrDarkMode(notifyMeCell: NotifyMeCell) {
+        if #available(iOS 12.0, *) {
+            notifyMeCell.bookSegment.backgroundColor = UIColor.black
+            notifyMeCell.bookSegment.layer.borderColor = UIColor.white.cgColor
+            notifyMeCell.bookSegment.selectedSegmentTintColor = UIColor.white
+            notifyMeCell.bookSegment.layer.borderWidth = 1
+
+            let titleBookTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
+            notifyMeCell.bookSegment.setTitleTextAttributes(titleBookTextAttributes, for:.normal)
+
+            let titleBookTextAttributes1 = [NSAttributedString.Key.foregroundColor: UIColor.black]
+            notifyMeCell.bookSegment.setTitleTextAttributes(titleBookTextAttributes1, for:.selected)
+            
+            notifyMeCell.gameSegment.backgroundColor = UIColor.black
+            notifyMeCell.gameSegment.layer.borderColor = UIColor.white.cgColor
+            notifyMeCell.gameSegment.selectedSegmentTintColor = UIColor.white
+            notifyMeCell.gameSegment.layer.borderWidth = 1
+
+            let titleGameTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
+            notifyMeCell.gameSegment.setTitleTextAttributes(titleGameTextAttributes, for:.normal)
+
+            let titleGameTextAttributes1 = [NSAttributedString.Key.foregroundColor: UIColor.black]
+            notifyMeCell.gameSegment.setTitleTextAttributes(titleGameTextAttributes1, for:.selected)
+                
+        }
+    }
+    
     fileprivate func setupLightAndDarkMode() {
         if #available(iOS 12.0, *) {
-        let appearance = UINavigationBarAppearance()
-        if traitCollection.userInterfaceStyle == .light {
-         //Light mode
-            appearance.titleTextAttributes = [.foregroundColor: UIColor.black]
-            appearance.largeTitleTextAttributes = [.foregroundColor: UIColor.black]
+            let appearance = UINavigationBarAppearance()
+            if traitCollection.userInterfaceStyle == .light {
+             //Light mode
+                appearance.titleTextAttributes = [.foregroundColor: UIColor.black]
+                appearance.largeTitleTextAttributes = [.foregroundColor: UIColor.black]
 
-            UINavigationBar.appearance().tintColor = .white
-            UINavigationBar.appearance().standardAppearance = appearance
-            UINavigationBar.appearance().compactAppearance = appearance
-            UINavigationBar.appearance().scrollEdgeAppearance = appearance
-            self.tableView.backgroundView = UIView() //Create a backgroundView
-            self.tableView.backgroundView!.backgroundColor = UIColor(white: 0.95, alpha: 1)
+                UINavigationBar.appearance().tintColor = .white
+                UINavigationBar.appearance().standardAppearance = appearance
+                UINavigationBar.appearance().compactAppearance = appearance
+                UINavigationBar.appearance().scrollEdgeAppearance = appearance
+                self.tableView.backgroundView = UIView() //Create a backgroundView
+                self.tableView.backgroundView!.backgroundColor = UIColor(white: 0.95, alpha: 1)
+                
+            } else {
+              //DARK
+                appearance.titleTextAttributes = [.foregroundColor: UIColor.white]
+                appearance.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
 
-        } else {
-          //DARK
-            appearance.titleTextAttributes = [.foregroundColor: UIColor.white]
-            appearance.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
+                UINavigationBar.appearance().tintColor = .white
+                UINavigationBar.appearance().standardAppearance = appearance
+                UINavigationBar.appearance().compactAppearance = appearance
+                UINavigationBar.appearance().scrollEdgeAppearance = appearance
+                self.tableView.backgroundView = UIView() //Create a backgroundView
+                self.tableView.backgroundView!.backgroundColor = UIColor(red: 47/255.0 , green: 49/255.0 , blue: 52/255.0 , alpha: 1) //choose your background color
 
-            UINavigationBar.appearance().tintColor = .white
-            UINavigationBar.appearance().standardAppearance = appearance
-            UINavigationBar.appearance().compactAppearance = appearance
-            UINavigationBar.appearance().scrollEdgeAppearance = appearance
-            self.tableView.backgroundView = UIView() //Create a backgroundView
-            self.tableView.backgroundView!.backgroundColor = UIColor(red: 47/255.0 , green: 49/255.0 , blue: 52/255.0 , alpha: 1) //choose your background color
-
-        }
+            }
             
         } else {
             UINavigationBar.appearance().tintColor = .white
