@@ -70,7 +70,8 @@ class SettingsViewController: UITableViewController {
             "uid": uid,
             "fullName": user?.fullName ?? "",
             "imageUrl": user?.imageUrl ?? "",
-            "notifyMe": user?.notifyMe ?? false
+            "notifyMeBook": user?.notifyMeBook ?? false,
+            "notifyMeGame": user?.notifyMeGame ?? false
             ] as [String : Any]
         let hud = JGProgressHUD(style: .dark)
         hud.textLabel.text = "Saving Settings"
@@ -104,7 +105,7 @@ class SettingsViewController: UITableViewController {
         case 5:
             headerLabel.text = "Artist Name"
         default:
-            headerLabel.text = "Notify Me"
+            headerLabel.text = "Notify Me When Available"
         }
         
         headerLabel.font = UIFont.boldSystemFont(ofSize: 24)
@@ -135,7 +136,17 @@ class SettingsViewController: UITableViewController {
         
         if indexPath.section == 6 {
             let notifyMeCell = NotifyMeCell(style: .default, reuseIdentifier: nil)
+            
             handleLightOrDarkMode(notifyMeCell: notifyMeCell)
+            
+            notifyMeCell.bookSegment.addTarget(self, action: #selector(handleBookNotifyMe), for: .valueChanged)
+            
+            notifyMeCell.gameSegment.addTarget(self, action: #selector(handleGameNotifyMe), for: .valueChanged)
+            
+            notifyMeCell.bookSegment.selectedSegmentIndex = self.user?.notifyMeBook ?? false ? 1 : 0
+            
+            notifyMeCell.gameSegment.selectedSegmentIndex = self.user?.notifyMeGame ?? false ? 1 : 0
+            
             return notifyMeCell
         }
         
@@ -162,8 +173,6 @@ class SettingsViewController: UITableViewController {
             cell.textField.isEnabled = false
         default:
             cell.textField.text = "Book | Game Available "
-            cell.textField.isEnabled = false
-            cell.textField.addTarget(self, action: #selector(handleNotifyMe), for: .editingChanged)
         }
 
         return cell
@@ -243,9 +252,28 @@ extension SettingsViewController {
         self.user?.fullName = textField.text ?? ""
     }
     
-    //MARK:- HANDLE NAME CHANGE
-    @objc fileprivate func handleNotifyMe(textField: UITextField) {
-        
+    //MARK:- HANDLE BOOK AVAILABLE
+    @objc fileprivate func handleBookNotifyMe(sender: UISegmentedControl) {
+        switch sender.selectedSegmentIndex{
+        case 0:
+            self.user?.notifyMeBook = false
+        case 1:
+            self.user?.notifyMeBook = true
+        default:
+            break
+        }
+    }
+    
+    //MARK:- HANDLE GAME AVAILABLE
+    @objc fileprivate func handleGameNotifyMe(sender: UISegmentedControl) {
+        switch sender.selectedSegmentIndex{
+        case 0:
+            self.user?.notifyMeGame = false
+        case 1:
+            self.user?.notifyMeGame = true
+        default:
+            break
+        }
     }
     
     //MARK:- FETCHING FROM FIRESTORE
