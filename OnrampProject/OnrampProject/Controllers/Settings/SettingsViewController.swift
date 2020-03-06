@@ -132,6 +132,12 @@ class SettingsViewController: UITableViewController {
     
     //MARK:- CELL FOR ROW
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        if indexPath.section == 6 {
+            let notifyMeCell = NotifyMeCell(style: .default, reuseIdentifier: nil)
+            return notifyMeCell
+        }
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! SettingsCell
         
         switch indexPath.section {
