@@ -198,6 +198,32 @@ extension SettingsViewController: UIImagePickerControllerDelegate, UINavigationC
         let imageButton = (picker as? CustomImagePickerController)?.imageButton
         imageButton?.setImage(selectedImage?.withRenderingMode(.alwaysOriginal), for: .normal)
         dismiss(animated: true, completion: nil)
+        
+        let filename = UUID().uuidString
+        let ref = Storage.storage().reference(withPath: "/images/\(filename)")
+        guard let uploadData = selectedImage?.jpegData(compressionQuality: 1) else {return}
+        
+        let hud = JGProgressHUD(style: .dark)
+        hud.textLabel.text = "Uploading image..."
+        hud.show(in: view)
+        ref.putData(uploadData, metadata: nil) { (nil, err) in
+            hud.dismiss()
+            if let err = err {
+                print("Failed to upload image to storage: ", err)
+                return
+            }
+            
+            ref.downloadURL { (url, err) in
+                hud.dismiss()
+                if let err = err {
+                    print("Failed to fetch download URL: ", err)
+                    return
+                }
+                
+                self.user?.imageUrl = url?.absoluteString
+                
+            }
+        }
     }
 
     
