@@ -40,7 +40,7 @@ class SettingsViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNavItems()
-        fetchUserFromFirestore()
+        fetchCurrentUser()
         tableView.register(SettingsCell.self, forCellReuseIdentifier: cellId)
         tableView.backgroundColor = UIColor(white: 0.95, alpha: 1)
         tableView.tableFooterView = UIView()
@@ -277,7 +277,7 @@ extension SettingsViewController {
     }
     
     //MARK:- FETCHING FROM FIRESTORE
-    fileprivate func fetchUserFromFirestore() {
+    fileprivate func fetchCurrentUser() {
         guard let uid = Auth.auth().currentUser?.uid else {return}
         Firestore.firestore().collection("users").document(uid).getDocument { (snapshot, err) in
             if let err = err {
