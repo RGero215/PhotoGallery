@@ -21,15 +21,14 @@ class RegistrationViewController: UIViewController {
     //MARK:- LOAD VIEWS
     override func loadView() {
         view = registrationView
-        
     }
     
     //MARK:- LIFE CYCLE
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         navigationController?.isNavigationBarHidden = true
+
         setupNotificationObservers()
         setupTapGesture()
         setupButtons()
@@ -147,6 +146,7 @@ class RegistrationViewController: UIViewController {
                 
         })
     }
+    
 }
 
 //MARK:- SCROLLVIEW PROTOCOLS
@@ -240,5 +240,7 @@ extension RegistrationViewController {
         hud.show(in: self.view)
         hud.dismiss(afterDelay: 4)
     }
+    
+    
     
 }

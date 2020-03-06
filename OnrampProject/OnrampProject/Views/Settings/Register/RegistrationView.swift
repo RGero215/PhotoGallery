@@ -12,6 +12,7 @@ class RegistrationView: UIView  {
     //MARK:- PROPERTIES
     var activeTextField: UITextField?
     
+    
     //MARK:- UI COMPONENTS
     let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
@@ -21,7 +22,7 @@ class RegistrationView: UIView  {
     }()
     
     lazy var verticalStackView: VerticalStackView = {
-        let stackView = VerticalStackView(arrangedSubviews: [fullNameTextField, emailTextField, passwordTextField, register])
+        let stackView = VerticalStackView(arrangedSubviews: [fullNameTextField, emailTextField, passwordTextField, register, goToLoginButton])
         stackView.spacing = 8
         return stackView
     }()
@@ -99,22 +100,41 @@ class RegistrationView: UIView  {
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupLayout()
+
     }
     
     //MARK:- SETUP LAYOUTS
     fileprivate func setupLayout() {
+        
         addSubview(backgroundImage)
         backgroundImage.fillSuperview()
         addSubview(scrollView)
         scrollView.fillSuperview()
         scrollView.addSubview(overallStackView)
         overallStackView.spacing = 8
-        overallStackView.axis = .vertical
+        deviceOrientation()
         overallStackView.anchor(top: nil, leading: backgroundImage.leadingAnchor, bottom: nil, trailing: backgroundImage.trailingAnchor, padding: .init(top: 0, left: 50, bottom: 0, right: 50))
         overallStackView.centerYAnchor.constraint(equalTo: scrollView.centerYAnchor).isActive = true
-        addSubview(goToLoginButton)
-        goToLoginButton.anchor(top: nil, leading: backgroundImage.leadingAnchor, bottom: backgroundImage.safeAreaLayoutGuide.bottomAnchor, trailing: backgroundImage.trailingAnchor)
         
+    }
+    
+    func deviceOrientation() {
+        
+        if let interfaceOrientation = UIApplication.shared.windows.first(where: { $0.isKeyWindow })?.windowScene?.interfaceOrientation {
+            if interfaceOrientation == .landscapeRight || interfaceOrientation == .landscapeLeft {
+               
+                overallStackView.axis = .horizontal
+                verticalStackView.distribution = .fillEqually
+                selectPhotoButtonHeightAnchor.isActive = false
+                selectPhotoButtonWidthAnchor.isActive = true
+            } else {
+                
+                overallStackView.axis = .vertical
+                verticalStackView.distribution = .fill
+                selectPhotoButtonWidthAnchor.isActive = false
+                selectPhotoButtonHeightAnchor.isActive = true
+            }
+        }
     }
     
     required init?(coder: NSCoder) {

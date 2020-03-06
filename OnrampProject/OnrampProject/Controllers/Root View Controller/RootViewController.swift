@@ -13,6 +13,7 @@ final class RootViewController: UITabBarController {
     //MARK:- PROPERTIES
     let registration = RegistrationViewController()
     var user: User?
+    
 
     // MARK: - VIEW LIFE CYCLE
     
@@ -26,8 +27,7 @@ final class RootViewController: UITabBarController {
             createNavController(viewController: GalleryViewController(), title: "AR Gallery", imageName: "ARKit"),
             createNavController(viewController: SettingsViewController(), title: "Settings", imageName: "user"),
         ]
-        
-        
+
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -67,6 +67,9 @@ final class RootViewController: UITabBarController {
         
         return navController
     }
+    
+    
+    
     
     
 
