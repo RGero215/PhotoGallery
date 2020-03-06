@@ -88,13 +88,14 @@ class RegistrationViewController: UIViewController {
     //MARK:- HANDLE REGISTER
     @objc fileprivate func handleRegister() {
         self.handleTapDismiss()
-        
+        self.registeringHUD.dismiss()
         registrationViewModel.performRegistration { [weak self] (err) in
             if let err = err {
                 self?.showHUDWithError(error: err)
                 return
             }
             print("Finished registering user...")
+            self?.dismiss(animated: true, completion: nil)
         }
         
     }
@@ -208,7 +209,7 @@ extension RegistrationViewController {
     
     //MARK:- SETUP VIEW MODEL OBSERVER
     fileprivate func setupRegistrationViewModelObserver() {
-        registrationViewModel.bindableIsFromValid.bind  { [unowned self] (isFormValid) in
+        registrationViewModel.bindableIsFormValid.bind  { [unowned self] (isFormValid) in
             
             guard let isFormValid = isFormValid else {return}
             

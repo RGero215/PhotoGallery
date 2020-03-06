@@ -13,7 +13,7 @@ class RegistrationViewModel {
     //MARK:- BINDABLES
     var bindableIsRegistering = Bindable<Bool>()
     var bindableImage = Bindable<UIImage>()
-    var bindableIsFromValid = Bindable<Bool>()
+    var bindableIsFormValid = Bindable<Bool>()
     
     //MARK:- PROPERTIES
     var fullName: String? { didSet{checkFormValidity()} }
@@ -23,7 +23,7 @@ class RegistrationViewModel {
     
     fileprivate func checkFormValidity() {
         let isFormValid = fullName?.isEmpty == false && email?.isEmpty == false && password?.isEmpty == false
-        bindableIsFromValid.value = isFormValid
+        bindableIsFormValid.value = isFormValid
     }
     
     func performRegistration(completion: @escaping (Error?) -> ()) {

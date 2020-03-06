@@ -13,7 +13,7 @@ class LoginViewController: UIViewController {
     //MARK:- LOGIN VIEW
     var loginView = LoginView()
     //MARK:- LOGIN VIEW MODEL
-    let registrationViewModel = RegistrationViewModel()
+    let loginViewModel = LoginViewModel()
     
     //MARK:- PROPERTIES
     let loginHUD = JGProgressHUD(style: .dark)
@@ -83,13 +83,15 @@ class LoginViewController: UIViewController {
     //MARK:- HANDLE LOGIN
     @objc fileprivate func handleLogin() {
         self.handleTapDismiss()
-        
-        registrationViewModel.performRegistration { [weak self] (err) in
+        self.loginHUD.dismiss()
+        loginViewModel.performLogin { [weak self] (err) in
             if let err = err {
                 self?.showHUDWithError(error: err)
                 return
             }
-            print("Finished registering user...")
+            print("Logged in successfully...")
+            self?.dismiss(animated: true, completion: nil)
+            
         }
         
     }
@@ -169,16 +171,16 @@ extension LoginViewController {
     @objc fileprivate func handleTextChange(textField: UITextField) {
         switch textField {
         case loginView.emailTextField:
-            registrationViewModel.email = textField.text
+            loginViewModel.email = textField.text
         default:
-            registrationViewModel.password = textField.text
+            loginViewModel.password = textField.text
         }
 
     }
     
     //MARK:- SETUP VIEW MODEL OBSERVER
     fileprivate func setupLoginViewModelObserver() {
-        registrationViewModel.bindableIsFromValid.bind  { [unowned self] (isFormValid) in
+        loginViewModel.isFormValid.bind  { [unowned self] (isFormValid) in
             
             guard let isFormValid = isFormValid else {return}
             
@@ -187,8 +189,8 @@ extension LoginViewController {
             self.loginView.login.setTitleColor(isFormValid ? .black : #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1), for: .normal)
         }
         
-        registrationViewModel.bindableIsRegistering.bind { (isRegistering) in
-            if isRegistering == true {
+        loginViewModel.isLoggingIn.bind { (isLoggingIn) in
+            if isLoggingIn == true {
                 self.loginHUD.textLabel.text = "Login"
                 self.loginHUD.show(in: self.view)
             } else {

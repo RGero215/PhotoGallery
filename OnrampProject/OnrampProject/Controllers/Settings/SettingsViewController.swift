@@ -21,7 +21,6 @@ class SettingsViewController: UITableViewController {
     lazy var imageButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Select Photo", for: .normal)
-        button.backgroundColor = .red
         button.contentMode = .scaleAspectFill
         button.addTarget(self, action: #selector(handleSelectPhoto), for: .touchUpInside)
         return button
