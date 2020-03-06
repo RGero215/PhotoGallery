@@ -99,9 +99,18 @@ class RegistrationViewController: UIViewController {
         }
         
     }
-    
+    //MARK:- HANDLE GO TO LOGIN
     @objc fileprivate func handleGoToLogin() {
-        
+        let loginController = LoginViewController()
+        CATransaction.begin()
+        CATransaction.setDisableActions(true)
+
+        let animation = CATransition()
+        animation.type = CATransitionType.fade
+        self.navigationController?.view.layer.add(animation, forKey: "someAnimation")
+        _ = navigationController?.pushViewController(loginController, animated: false)
+
+        CATransaction.commit()
     }
     
     //MARK:- OBSERVERS

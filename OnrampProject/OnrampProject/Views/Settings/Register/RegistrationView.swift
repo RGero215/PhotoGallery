@@ -90,8 +90,8 @@ class RegistrationView: UIView  {
     let goToLoginButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Go to login", for: .normal)
-        button.setTitleColor(.white, for: .normal)
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .heavy)
+        button.setTitleColor(#colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1), for: .normal)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 24, weight: .heavy)
         return button
     }()
     
@@ -112,6 +112,8 @@ class RegistrationView: UIView  {
         overallStackView.axis = .vertical
         overallStackView.anchor(top: nil, leading: backgroundImage.leadingAnchor, bottom: nil, trailing: backgroundImage.trailingAnchor, padding: .init(top: 0, left: 50, bottom: 0, right: 50))
         overallStackView.centerYAnchor.constraint(equalTo: scrollView.centerYAnchor).isActive = true
+        addSubview(goToLoginButton)
+        goToLoginButton.anchor(top: nil, leading: backgroundImage.leadingAnchor, bottom: backgroundImage.safeAreaLayoutGuide.bottomAnchor, trailing: backgroundImage.trailingAnchor)
         
     }
     
