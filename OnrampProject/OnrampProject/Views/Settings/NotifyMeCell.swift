@@ -44,7 +44,7 @@ class NotifyMeCell: UITableViewCell {
         addSubview(overrallStackView)
         overrallStackView.fillSuperview()
         overrallStackView.spacing = 16
-        overrallStackView.anchor(top: topAnchor, leading: leadingAnchor, bottom: bottomAnchor, trailing: trailingAnchor, padding: .init(top: 16, left: 16, bottom: 16, right: 16))
+        overrallStackView.anchor(top: topAnchor, leading: leadingAnchor, bottom: nil, trailing: nil, padding: .init(top: 0, left: 0, bottom: 16, right: 16))
         bookStackView.distribution = .fillEqually
         gameStackView.distribution = .fillEqually
     }

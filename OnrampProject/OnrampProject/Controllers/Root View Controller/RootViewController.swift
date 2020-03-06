@@ -59,6 +59,8 @@ final class RootViewController: UITabBarController {
         case let viewController as PhotoGalleryController:
             viewController.viewModel = PhotoViewModel()
         case let viewController as SettingsViewController:
+            viewController.viewModel = SettingsViewModel()
+            viewController.user = self.user
             viewController.navigationItem.leftBarButtonItem?.tintColor = UIView().tintColor
             viewController.navigationItem.rightBarButtonItem?.tintColor = UIView().tintColor
         default:

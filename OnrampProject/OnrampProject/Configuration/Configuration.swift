@@ -37,6 +37,11 @@ enum FetchingError {
     static let message = "The application is unable to fetch artwork data. Please make sure your device is connected over Wi-Fi or cellular."
 }
 
+enum FetchingUserError {
+    static let title = "Unable to Fetch User"
+    static let message = "The application is unable to fetch user data. Please make sure your device is connected over Wi-Fi or cellular."
+}
+
 enum LoadingArtwork {
     static let text = "Loading Artworks"
     static let message = "This proccess may take a few minutes the first time fetching all the Artworks from the database. Please be patient and make sure your internet connection is not slow."
