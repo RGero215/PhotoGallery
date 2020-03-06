@@ -6,11 +6,13 @@
 //
 
 import UIKit
+import Firebase
 
 final class RootViewController: UITabBarController {
     
     //MARK:- PROPERTIES
-    
+    let registration = RegistrationViewController()
+    var user: User?
 
     // MARK: - VIEW LIFE CYCLE
     
@@ -26,6 +28,18 @@ final class RootViewController: UITabBarController {
         ]
         
         
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        if  UserDefaults.standard.value(forKey: Auth.auth().currentUser?.uid ?? "") == nil {
+//            self.registration.delegate = self
+            let nav = UINavigationController(rootViewController: self.registration)
+            nav.navigationBar.isHidden = true
+            nav.modalPresentationStyle = .fullScreen
+            self.present(nav, animated: true, completion: nil)
+        }
     }
     
     //MARK: - CREATE NAV CONTROLLER

@@ -10,6 +10,7 @@ import Firebase
 import JGProgressHUD
 import SDWebImage
 
+
 class SettingsViewController: UITableViewController {
     
     //MARK:- PROPERTIES
@@ -57,6 +58,7 @@ class SettingsViewController: UITableViewController {
     
     //MARK:- HANDLE LOGOUT
     @objc fileprivate func handleLogout() {
+        try? Auth.auth().signOut()
         let registrationVC = RegistrationViewController()
         let nav = UINavigationController(rootViewController: registrationVC)
         nav.modalPresentationStyle = .fullScreen
@@ -83,6 +85,7 @@ class SettingsViewController: UITableViewController {
                 return
             }
             print("Finished saving user info")
+            self.tableView.reloadData()
         }
     }
     
@@ -276,7 +279,7 @@ extension SettingsViewController {
         }
     }
     
-    //MARK:- FETCHING FROM FIRESTORE
+    //MARK:- FETCHING CURRENT USER
     fileprivate func fetchCurrentUser() {
         guard let uid = Auth.auth().currentUser?.uid else {return}
         Firestore.firestore().collection("users").document(uid).getDocument { (snapshot, err) in
@@ -288,7 +291,7 @@ extension SettingsViewController {
             let user = User(dictionary: dictionary)
             print("User: ", user)
             self.user = user
-            
+            UserDefaults.standard.set(true, forKey: self.user?.uid ?? "")
             self.loadUserPhoto()
             
             self.tableView.reloadData()
