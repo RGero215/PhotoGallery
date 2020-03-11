@@ -39,6 +39,7 @@ class RegistrationViewModel {
                 return
             }
             print("Successfully register user: ", res?.user.uid ?? "")
+            UserDefaults.standard.set(true, forKey: res?.user.uid ?? "")
             
             self.saveImageToFirebase(completion: completion)
             

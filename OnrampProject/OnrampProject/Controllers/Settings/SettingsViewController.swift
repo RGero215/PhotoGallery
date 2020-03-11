@@ -57,6 +57,12 @@ class SettingsViewController: UIViewController {
         
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        self.viewModel?.fetchCurrentUser()
+        self.settingsView.tableView.reloadData()
+        print("Reloading...")
+    }
+    
     //MARK:- FILEPRIVATE METHODS
     fileprivate func setupNavItems() {
         view.backgroundColor = .blue

@@ -29,7 +29,7 @@ class SettingsViewModel {
     }
     
     //MARK:- FETCHING CURRENT USER
-    fileprivate func fetchCurrentUser() {
+    func fetchCurrentUser() {
         guard let uid = Auth.auth().currentUser?.uid else {return}
         Firestore.firestore().collection("users").document(uid).getDocument { (snapshot, err) in
             if let err = err {
