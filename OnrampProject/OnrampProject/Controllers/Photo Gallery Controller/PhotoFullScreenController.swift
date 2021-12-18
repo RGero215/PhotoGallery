@@ -26,6 +26,7 @@ class PhotoFullScreenController: UITableViewController {
         tableView.tableFooterView = UIView()
         tableView.separatorStyle = .none
         tableView.allowsSelection = false
+        tableView.contentInsetAdjustmentBehavior = .never
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -99,7 +100,7 @@ class PhotoFullScreenController: UITableViewController {
         animation.type = CATransitionType.fade
         self.navigationController?.view.layer.add(animation, forKey: "videoVC")
 
-        _ = present(playerViewController, animated: false){
+        present(playerViewController, animated: false){
             player.play()
         }
         CATransaction.commit()

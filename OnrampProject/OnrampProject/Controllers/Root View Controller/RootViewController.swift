@@ -32,9 +32,12 @@ final class RootViewController: UITabBarController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+
+        if Auth.auth().currentUser?.uid != nil && UserDefaults.standard.value(forKey: Auth.auth().currentUser?.uid ?? "") == nil {
+            UserDefaults.standard.set(true, forKey: Auth.auth().currentUser?.uid ?? "")
+        }
         
         if  UserDefaults.standard.value(forKey: Auth.auth().currentUser?.uid ?? "") == nil {
-//            self.registration.delegate = self
             let nav = UINavigationController(rootViewController: self.registration)
             nav.navigationBar.isHidden = true
             nav.modalPresentationStyle = .fullScreen

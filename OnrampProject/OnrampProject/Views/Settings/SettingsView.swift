@@ -38,6 +38,7 @@ class SettingsView: UIView, UITableViewDelegate {
         let button = UIButton(type: .system)
         button.setTitle("Select Photo", for: .normal)
         button.contentMode = .scaleAspectFill
+        button.imageView?.contentMode = .scaleAspectFill
         return button
     }()
     

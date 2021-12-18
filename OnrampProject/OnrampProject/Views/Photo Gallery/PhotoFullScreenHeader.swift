@@ -32,15 +32,15 @@ class PhotoFullScreenHeader: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
-        addSubview(photoCell)
+        contentView.addSubview(photoCell)
 //        photoCell.centerInSuperview(size: .init(width: frame.width * 1.5, height: frame.width * 1.5))
         photoCell.fillSuperview()
         photoCell.imageView.layer.cornerRadius = 0
         
-        addSubview(closeButton)
-        closeButton.anchor(top: topAnchor, leading: nil, bottom: nil, trailing: trailingAnchor, padding: .init(top: 0, left: 0, bottom: 0, right: -18), size: .init(width: 80, height: 38))
+        contentView.addSubview(closeButton)
+        closeButton.anchor(top: topAnchor, leading: nil, bottom: nil, trailing: trailingAnchor, padding: .init(top: 10, left: 0, bottom: 0, right: 0), size: .init(width: 80, height: 38))
         
-        addSubview(playButton)
+        contentView.addSubview(playButton)
         playButton.centerInSuperview(size: .init(width: 80, height: 80))
     }
     

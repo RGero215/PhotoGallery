@@ -28,7 +28,7 @@ class PhotoRowCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        addSubview(imageView)
+            contentView.addSubview(imageView)
         
         imageView.contentMode = .scaleAspectFill
         let imageContainerView = UIView()
