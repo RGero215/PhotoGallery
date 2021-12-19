@@ -8,6 +8,9 @@
 import UIKit
 import SceneKit
 import ARKit
+import Firebase
+import JGProgressHUD
+import SDWebImage
 
 class GalleryViewController: UIViewController, ARSCNViewDelegate {
 
@@ -19,6 +22,9 @@ class GalleryViewController: UIViewController, ARSCNViewDelegate {
     
     
     var planes :[Plane] = [Plane]()
+    
+    var art: Art?
+    var user: User?
     
     override var prefersStatusBarHidden: Bool {
         return true
@@ -75,19 +81,20 @@ class GalleryViewController: UIViewController, ARSCNViewDelegate {
     }
     
     //MARK:- METHODS
-    
+    var isAdded = false
     @objc func tapped(recognizer :UITapGestureRecognizer) {
         
         let sceneView = recognizer.view as! ARSCNView
         let touchLocation = recognizer.location(in: sceneView)
         
         let hitTestResults = sceneView.hitTest(touchLocation, types: .existingPlaneUsingExtent)
-        
+        let results = sceneView.hitTest(touchLocation, options: [:])
+
         if !hitTestResults.isEmpty {
-            
-            let hitTestResult = hitTestResults.first!
-            addPortal(ht :hitTestResult)
-            
+            guard let hitTestResult = hitTestResults.first else {return}
+            if !isAdded {
+                addPortal(ht :hitTestResult)
+            }
         }
     }
     
@@ -98,9 +105,9 @@ class GalleryViewController: UIViewController, ARSCNViewDelegate {
             if let portalNode = portalScene.rootNode.childNode(withName: GalleryConfig.node, recursively: true) {
                 
                 portalNode.position = SCNVector3(ht.worldTransform.columns.3.x, ht.worldTransform.columns.3.y, ht.worldTransform.columns.3.z)
-                           
-                           
+                
                 self.sceneView.scene.rootNode.addChildNode(portalNode)
+                isAdded = true
             }
              
         }
@@ -140,3 +147,55 @@ class GalleryViewController: UIViewController, ARSCNViewDelegate {
      
 }
 
+//MARK:- EXTENSION
+
+extension GalleryViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
+    //MARK:- HANDLE SELECT BUTTON
+    @objc fileprivate func handleSelectPhoto(button: UIButton) {
+        let imagePicker = CustomImagePickerController()
+        imagePicker.delegate = self
+        imagePicker.imageButton = button
+        present(imagePicker, animated: true)
+    }
+    
+    //MARK:- IMAGE PICKER
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        let selectedImage = info[.originalImage] as? UIImage
+        let imageButton = (picker as? CustomImagePickerController)?.imageButton
+        imageButton?.setImage(selectedImage?.withRenderingMode(.alwaysOriginal), for: .normal)
+        dismiss(animated: true, completion: nil)
+        
+        let filename = UUID().uuidString
+        guard let userUID = user?.uid else { return }
+        let ref = Storage.storage().reference(withPath: "/art/\(userUID)/\(filename)")
+        guard let uploadData = selectedImage?.jpegData(compressionQuality: 1) else {return}
+        
+        let hud = JGProgressHUD(style: .dark)
+        hud.textLabel.text = "Uploading image..."
+        hud.show(in: view)
+        ref.putData(uploadData, metadata: nil) { (nil, err) in
+            hud.dismiss()
+            if let err = err {
+                print("Failed to upload image to storage: ", err)
+                return
+            }
+            
+            ref.downloadURL { (url, err) in
+                hud.dismiss()
+                if let err = err {
+                    print("Failed to fetch download URL: ", err)
+                    return
+                }
+                
+                self.art?.imageUrl = url?.absoluteString
+                self.art?.name = filename
+                guard let artist = self.user?.fullName else {return}
+                self.art?.artist = artist
+                self.art?.forSale = true
+                self.art?.sold = false
+                
+            }
+        }
+    }
+}
